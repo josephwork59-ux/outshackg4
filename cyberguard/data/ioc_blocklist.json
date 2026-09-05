@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "description": "OFFLINE SAMPLE indicator list for demo and tests. Not a live threat feed.",
+    "updated": null,
+    "note": "Addresses are from the RFC 5737 documentation ranges (TEST-NET) and are not real infrastructure."
+  },
+  "ipv4": {
+    "203.0.113.66": {
+      "category": "brute-force / credential-stuffing source",
+      "campaign": "sample-cred-stuffing-2026",
+      "first_seen": "2026-08-20",
+      "confidence": 0.8,
+      "references": ["sample-data"]
+    },
+    "198.51.100.23": {
+      "category": "web application scanning (sqlmap-style probes)",
+      "campaign": "sample-web-scan-2026",
+      "first_seen": "2026-08-28",
+      "confidence": 0.7,
+      "references": ["sample-data"]
+    }
+  },
+  "domains": {},
+  "hashes": {}
+}
