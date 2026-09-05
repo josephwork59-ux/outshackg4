@@ -1,0 +1,17 @@
+{
+  "name": "acme-payments-api (demo)",
+  "log_sources": [
+    {"path": "demo/env/var/log/auth.log", "format": "syslog"},
+    {"path": "demo/env/var/log/nginx/access.log", "format": "nginx"}
+  ],
+  "repo_path": "demo/env/app",
+  "dockerfiles": ["demo/env/app/Dockerfile"],
+  "images": [],
+  "api_endpoints": ["https://api.acme.example/v1/pay"],
+  "openapi_spec": null,
+  "framework": "NIST_CSF",
+  "asset_criticality": "high",
+  "exposure": "external",
+  "allowlist": [],
+  "allow_active": false
+}

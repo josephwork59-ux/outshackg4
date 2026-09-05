@@ -1,0 +1,67 @@
+{
+  "framework": "ISO/IEC 27001 Annex A",
+  "version": "2022",
+  "subset_note": "Representative subset of Annex A controls for demonstration. Not the full Annex A set.",
+  "controls": [
+    {
+      "id": "A.5.7",
+      "title": "Threat intelligence",
+      "categories": [],
+      "keywords": ["threat intelligence", "kev", "epss", "exploited in the wild", "campaign", "ioc"]
+    },
+    {
+      "id": "A.5.17",
+      "title": "Authentication information",
+      "categories": ["CWE-798", "CWE-522"],
+      "keywords": ["credential", "secret", "password", "api key", "token", "hardcoded"]
+    },
+    {
+      "id": "A.5.24",
+      "title": "Information security incident management planning and preparation",
+      "categories": [],
+      "keywords": ["incident response", "response plan", "playbook", "preparation"]
+    },
+    {
+      "id": "A.5.26",
+      "title": "Response to information security incidents",
+      "categories": [],
+      "keywords": ["containment", "eradication", "recovery", "incident response", "forensic"]
+    },
+    {
+      "id": "A.8.2",
+      "title": "Privileged access rights",
+      "categories": ["CWE-250"],
+      "keywords": ["root", "privilege", "sudo", "least privilege", "runs as root"]
+    },
+    {
+      "id": "A.8.8",
+      "title": "Management of technical vulnerabilities",
+      "categories": ["CVE"],
+      "keywords": ["vulnerability", "cve", "patch", "upgrade", "sca", "dependency"]
+    },
+    {
+      "id": "A.8.9",
+      "title": "Configuration management",
+      "categories": ["CWE-16", "CWE-1188", "CWE-250"],
+      "keywords": ["dockerfile", "misconfiguration", "hardening", "baseline", "latest tag"]
+    },
+    {
+      "id": "A.8.15",
+      "title": "Logging",
+      "categories": [],
+      "keywords": ["log", "logging", "audit trail", "log tampering"]
+    },
+    {
+      "id": "A.8.16",
+      "title": "Monitoring activities",
+      "categories": [],
+      "keywords": ["monitoring", "anomaly", "brute force", "probe", "injection", "correlation"]
+    },
+    {
+      "id": "A.8.28",
+      "title": "Secure coding",
+      "categories": ["CWE-89", "CWE-79", "CWE-94"],
+      "keywords": ["secure coding", "sast", "sql injection", "xss", "code scan"]
+    }
+  ]
+}

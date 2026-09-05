@@ -1,0 +1,52 @@
+# One stack: an orchestrator API plus one worker container per agent, sharing a
+# Redis queue. The Python package is the same image everywhere; the command
+# selects the role. `tools/worker.py` implements both a Redis-backed and a
+# filesystem-backed queue, so `docker compose up` works even without Redis.
+#
+#   docker compose up --build
+#   curl -X POST localhost:8080/scan -d @demo/scenario.json -H 'content-type: application/json'
+#
+# This split is illustrative. The single-process path (`make demo`, `python -m cli`)
+# is the reference implementation and is what the tests exercise.
+
+x-cyberguard: &cyberguard
+  build: .
+  image: cyberguard:local
+  environment:
+    - CYBERGUARD_LLM=deterministic
+    - CYBERGUARD_QUEUE=redis://redis:6379/0
+  volumes:
+    - ./reports:/app/reports
+    - ./demo:/app/demo:ro
+  depends_on:
+    - redis
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+  orchestrator:
+    <<: *cyberguard
+    command: python -m tools.worker orchestrator --serve 0.0.0.0:8080
+    ports: ["8080:8080"]
+
+  log-monitor:
+    <<: *cyberguard
+    command: python -m tools.worker log_monitor
+
+  threat-intel:
+    <<: *cyberguard
+    command: python -m tools.worker threat_intel
+
+  vuln-scanner:
+    <<: *cyberguard
+    command: python -m tools.worker vuln_scanner
+
+  incident-response:
+    <<: *cyberguard
+    command: python -m tools.worker incident_response
+
+  policy-checker:
+    <<: *cyberguard
+    command: python -m tools.worker policy_checker

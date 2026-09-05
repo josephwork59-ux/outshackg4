@@ -1,0 +1,4 @@
+192.0.2.77 - - [06/Sep/2026:02:10:00 +0000] "GET /p?id=1%27%20UNION%20SELECT%20pw%20FROM%20users-- HTTP/1.1" 200 900 "-" "sqlmap/1.7"
+192.0.2.77 - - [06/Sep/2026:02:10:02 +0000] "GET /q?s=<script>alert(1)</script> HTTP/1.1" 200 120 "-" "Mozilla/5.0"
+192.0.2.77 - - [06/Sep/2026:02:10:04 +0000] "GET /../../../../etc/passwd HTTP/1.1" 404 10 "-" "curl/8"
+10.0.0.1 - - [06/Sep/2026:02:11:00 +0000] "GET /healthz HTTP/1.1" 200 2 "-" "kube-probe/1.29"

@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "description": "OFFLINE SAMPLE vulnerability snapshot for demo and tests. This is NOT a live feed.",
+    "updated": null,
+    "staleness_note": "`updated` is null: this is a static sample, so the freshness check is reported as not-applicable rather than stale. For production, replace this file with a real feed via agents.threat_intel.FeedProvider.",
+    "epss_kev_note": "CVSS values are from NVD. EPSS scores and `exploited_in_wild` flags here are ILLUSTRATIVE sample values, not authoritative. KEV flags reflect a point-in-time reading of the CISA KEV catalog and may be out of date.",
+    "sources": [
+      "https://nvd.nist.gov",
+      "https://osv.dev",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "https://www.first.org/epss"
+    ]
+  },
+  "packages": {
+    "pyyaml": [
+      {
+        "cve": "CVE-2020-14343",
+        "affected": "<5.4",
+        "fixed": "5.4",
+        "cvss": 9.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss": 0.90,
+        "kev": false,
+        "exploited_in_wild": false,
+        "cwe": "CWE-20",
+        "summary": "A vulnerability in PyYAML allows arbitrary code execution when untrusted YAML is processed with FullLoader / yaml.full_load, via crafted python/object/new tags. Incomplete fix for CVE-2020-1747.",
+        "references": [
+          "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+          "https://github.com/yaml/pyyaml/issues/420"
+        ]
+      }
+    ],
+    "jinja2": [
+      {
+        "cve": "CVE-2019-10906",
+        "affected": "<2.10.1",
+        "fixed": "2.10.1",
+        "cvss": 9.8,
+        "epss": 0.12,
+        "kev": false,
+        "exploited_in_wild": false,
+        "cwe": "CWE-20",
+        "summary": "Jinja2 sandbox escape via str.format_map, allowing an attacker who controls a template to break out of the sandbox.",
+        "references": ["https://nvd.nist.gov/vuln/detail/CVE-2019-10906"]
+      }
+    ],
+    "requests": [
+      {
+        "cve": "CVE-2018-18074",
+        "affected": "<2.20.0",
+        "fixed": "2.20.0",
+        "cvss": 9.8,
+        "epss": 0.08,
+        "kev": false,
+        "exploited_in_wild": false,
+        "cwe": "CWE-522",
+        "summary": "requests sends the Authorization header to a different host after a cross-origin redirect, leaking credentials to a third party.",
+        "references": ["https://nvd.nist.gov/vuln/detail/CVE-2018-18074"]
+      }
+    ],
+    "flask": [
+      {
+        "cve": "CVE-2019-1010083",
+        "affected": "<1.0",
+        "fixed": "1.0",
+        "cvss": 7.5,
+        "epss": 0.05,
+        "kev": false,
+        "exploited_in_wild": false,
+        "cwe": "CWE-835",
+        "summary": "Flask is vulnerable to denial of service via crafted encoding when the JSON body has no Content-Type header, causing unexpected memory use.",
+        "references": ["https://nvd.nist.gov/vuln/detail/CVE-2019-1010083"]
+      }
+    ],
+    "urllib3": [
+      {
+        "cve": "CVE-2021-33503",
+        "affected": "<1.26.5",
+        "fixed": "1.26.5",
+        "cvss": 7.5,
+        "epss": 0.10,
+        "kev": false,
+        "exploited_in_wild": false,
+        "cwe": "CWE-400",
+        "summary": "urllib3 ReDoS: a very long authority component in a supplied URL leads to catastrophic backtracking and denial of service.",
+        "references": ["https://nvd.nist.gov/vuln/detail/CVE-2021-33503"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+FROM ubuntu:latest
+ENV SERVICE_TOKEN=abcd1234efgh5678ijkl
+ADD https://get.example.com/tool.sh /tool.sh
+RUN apt-get update && apt-get install -y curl
+RUN curl -s https://example.com/i.sh | sh

@@ -1,0 +1,11 @@
+# Core pipeline: standard library only - nothing required here.
+
+# --- development / testing ---
+pytest>=7.4
+
+# --- optional: real LLM backend (CYBERGUARD_LLM=claude) ---
+# anthropic>=0.40
+
+# --- optional: real scanners are shelled out to if on PATH ---
+#   semgrep, bandit, pip-audit, trivy, hadolint
+# pip install semgrep bandit pip-audit

@@ -1,0 +1,18 @@
+[project]
+name = "cyberguard"
+version = "0.1.0"
+description = "Multi-agent cybersecurity AI system (decision support, proposal-only)."
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+llm = ["anthropic>=0.40"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools]
+py-modules = ["cli"]
+packages = ["agents", "contracts", "llm", "orchestrator", "tools"]

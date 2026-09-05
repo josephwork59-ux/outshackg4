@@ -1,0 +1,79 @@
+{
+  "framework": "NIST Cybersecurity Framework",
+  "version": "2.0",
+  "subset_note": "Representative 12-subcategory subset for demonstration. Not the full CSF 2.0 catalog.",
+  "controls": [
+    {
+      "id": "PR.AA-01",
+      "title": "Identities and credentials for authorized users are managed",
+      "categories": ["CWE-798", "CWE-522"],
+      "keywords": ["credential", "secret", "password", "api key", "hardcoded", "token", "mfa"]
+    },
+    {
+      "id": "PR.AA-05",
+      "title": "Access permissions and authorizations are managed, incorporating least privilege",
+      "categories": ["CWE-250"],
+      "keywords": ["root", "privilege", "sudo", "least privilege", "runs as root"]
+    },
+    {
+      "id": "DE.CM-01",
+      "title": "Networks and network services are monitored to find potentially adverse events",
+      "categories": [],
+      "keywords": ["log monitor", "network", "brute force", "port scan", "monitoring"]
+    },
+    {
+      "id": "DE.CM-09",
+      "title": "Computing hardware and software, runtime environments, and their data are monitored",
+      "categories": [],
+      "keywords": ["probe", "exploit attempt", "injection", "web attack", "scanning"]
+    },
+    {
+      "id": "DE.AE-02",
+      "title": "Potentially adverse events are analyzed to better understand associated activities",
+      "categories": [],
+      "keywords": ["anomaly", "correlation", "adverse event", "analysis"]
+    },
+    {
+      "id": "ID.RA-01",
+      "title": "Vulnerabilities in assets are identified, validated, and recorded",
+      "categories": ["CVE"],
+      "keywords": ["cve", "vulnerable dependency", "vulnerability", "outdated", "sca"]
+    },
+    {
+      "id": "ID.RA-05",
+      "title": "Threats, vulnerabilities, likelihoods, and impacts are used to understand inherent risk",
+      "categories": [],
+      "keywords": ["kev", "epss", "exploited in the wild", "threat intelligence", "exploit maturity"]
+    },
+    {
+      "id": "PR.PS-01",
+      "title": "Configuration management practices are established and applied",
+      "categories": ["CWE-16", "CWE-250", "CWE-1188"],
+      "keywords": ["dockerfile", "misconfiguration", "latest tag", "hardening", "baseline"]
+    },
+    {
+      "id": "PR.PS-02",
+      "title": "Software is maintained, replaced, and removed commensurate with risk",
+      "categories": ["CVE"],
+      "keywords": ["patch", "upgrade", "unmaintained", "end of life"]
+    },
+    {
+      "id": "PR.PS-06",
+      "title": "Secure software development practices are integrated and their performance monitored",
+      "categories": ["CWE-89", "CWE-79", "CWE-94", "CWE-798"],
+      "keywords": ["sast", "code scan", "sql injection", "xss", "insecure code"]
+    },
+    {
+      "id": "RS.MA-01",
+      "title": "The incident response plan is executed in coordination with relevant third parties",
+      "categories": [],
+      "keywords": ["incident response", "containment", "response plan"]
+    },
+    {
+      "id": "RS.AN-03",
+      "title": "Analysis is performed to establish what has taken place during an incident",
+      "categories": [],
+      "keywords": ["forensic", "evidence preservation", "root cause"]
+    }
+  ]
+}

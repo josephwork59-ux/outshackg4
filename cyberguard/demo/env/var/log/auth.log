@@ -1,0 +1,12 @@
+Sep  6 01:12:03 pay-api-1 sshd[20441]: Failed password for invalid user admin from 203.0.113.66 port 51422 ssh2
+Sep  6 01:12:05 pay-api-1 sshd[20443]: Failed password for invalid user admin from 203.0.113.66 port 51488 ssh2
+Sep  6 01:12:07 pay-api-1 sshd[20445]: Failed password for root from 203.0.113.66 port 51590 ssh2
+Sep  6 01:12:09 pay-api-1 sshd[20447]: Failed password for root from 203.0.113.66 port 51640 ssh2
+Sep  6 01:12:12 pay-api-1 sshd[20449]: Failed password for invalid user deploy from 203.0.113.66 port 51701 ssh2
+Sep  6 01:12:15 pay-api-1 sshd[20451]: Failed password for invalid user deploy from 203.0.113.66 port 51777 ssh2
+Sep  6 01:12:18 pay-api-1 sshd[20453]: Failed password for invalid user postgres from 203.0.113.66 port 51810 ssh2
+Sep  6 01:12:21 pay-api-1 sshd[20455]: Failed password for invalid user postgres from 203.0.113.66 port 51888 ssh2
+Sep  6 01:13:02 pay-api-1 sshd[20460]: Accepted password for deploy from 10.4.2.9 port 40122 ssh2
+Sep  6 01:14:44 pay-api-1 sudo[20512]: alice : 3 incorrect password attempts ; TTY=pts/0 ; PWD=/home/alice ; USER=root ; COMMAND=/bin/bash
+Sep  6 01:15:01 pay-api-1 sudo[20520]: bob : user NOT in the sudoers file ; TTY=pts/1 ; PWD=/srv ; USER=root ; COMMAND=/usr/bin/id
+Sep  6 01:20:11 pay-api-1 CRON[20690]: pam_unix(cron:session): session opened for user root by (uid=0)

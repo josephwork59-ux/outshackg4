@@ -1,0 +1,61 @@
+{
+  "framework": "SOC 2 (AICPA Trust Services Criteria)",
+  "version": "2017 (rev. 2022)",
+  "subset_note": "Representative subset of Common Criteria for demonstration. Not a full TSC mapping.",
+  "controls": [
+    {
+      "id": "CC6.1",
+      "title": "Logical access security software and infrastructure restrict access to authorized users",
+      "categories": ["CWE-798", "CWE-522", "CWE-250"],
+      "keywords": ["credential", "secret", "password", "access control", "least privilege", "root"]
+    },
+    {
+      "id": "CC6.6",
+      "title": "Logical access controls protect against threats from outside the system boundaries",
+      "categories": [],
+      "keywords": ["brute force", "external", "boundary", "credential stuffing", "internet-facing"]
+    },
+    {
+      "id": "CC6.8",
+      "title": "Controls prevent or detect and act upon the introduction of unauthorized or malicious software",
+      "categories": ["CWE-94", "CWE-16"],
+      "keywords": ["malicious", "unauthorized software", "supply chain", "image", "container"]
+    },
+    {
+      "id": "CC7.1",
+      "title": "Detection and monitoring procedures identify changes and susceptibilities to vulnerabilities",
+      "categories": ["CVE", "CWE-1188"],
+      "keywords": ["vulnerability", "cve", "configuration", "scan", "susceptibility"]
+    },
+    {
+      "id": "CC7.2",
+      "title": "The entity monitors system components for anomalies indicative of malicious acts",
+      "categories": [],
+      "keywords": ["log monitor", "anomaly", "monitoring", "probe", "injection", "correlation"]
+    },
+    {
+      "id": "CC7.3",
+      "title": "The entity evaluates security events to determine whether they could become incidents",
+      "categories": [],
+      "keywords": ["event evaluation", "triage", "severity", "adverse event"]
+    },
+    {
+      "id": "CC7.4",
+      "title": "The entity responds to identified security incidents by executing a defined program",
+      "categories": [],
+      "keywords": ["incident response", "containment", "eradication", "recovery", "response plan"]
+    },
+    {
+      "id": "CC7.5",
+      "title": "The entity identifies, develops, and implements activities to recover from incidents",
+      "categories": [],
+      "keywords": ["recover", "restore", "post-incident", "forensic", "evidence"]
+    },
+    {
+      "id": "CC8.1",
+      "title": "The entity authorizes, designs, tests, and approves changes to infrastructure and software",
+      "categories": ["CWE-250", "CWE-16"],
+      "keywords": ["change management", "dockerfile", "configuration", "hardening", "patch"]
+    }
+  ]
+}
