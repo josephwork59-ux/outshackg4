@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Run {{ report.run_id }} — Cybersecurity AI Agent System</title>
+  <style>
+    body { font-family: -apple-system, Segoe UI, sans-serif; background:#0f1420; color:#e6e9ef; margin:0; }
+    header { background:#141a2b; padding:20px 32px; border-bottom:1px solid #232b40; }
+    h1 { margin:0; font-size:18px; }
+    .sub { color:#8b93a7; font-size:13px; margin-top:4px; }
+    main { max-width:1000px; margin:32px auto; padding:0 20px; }
+    a.back { color:#7fb0ff; text-decoration:none; font-size:13px; }
+    section { margin-bottom:32px; }
+    h2 { font-size:14px; text-transform:uppercase; letter-spacing:.05em; color:#8b93a7; margin-bottom:12px; }
+    .exec-summary { background:#141a2b; padding:16px 20px; border-radius:8px; line-height:1.5; font-size:14px; white-space:pre-wrap; }
+    .card { background:#141a2b; border-radius:8px; padding:16px 20px; margin-bottom:10px; border-left:4px solid #4a5578; }
+    .card.critical { border-color:#ff4d4f; }
+    .card.high { border-color:#ff9f43; }
+    .card.medium { border-color:#ffd43b; }
+    .card.low { border-color:#4dabf7; }
+    .card.info { border-color:#8b93a7; }
+    .badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; text-transform:uppercase; margin-right:8px; }
+    .badge.critical { background:#ff4d4f33; color:#ff8080; }
+    .badge.high { background:#ff9f4333; color:#ffbb77; }
+    .badge.medium { background:#ffd43b33; color:#ffe58a; }
+    .badge.low { background:#4dabf733; color:#9fd3ff; }
+    .badge.info { background:#8b93a733; color:#c3c9d6; }
+    .meta { color:#8b93a7; font-size:12px; margin-top:6px; }
+    code { background:#0f1420; padding:1px 5px; border-radius:4px; font-size:12px; }
+    pre { background:#0f1420; padding:10px 14px; border-radius:6px; overflow-x:auto; font-size:12px; }
+    table { width:100%; border-collapse:collapse; background:#141a2b; border-radius:8px; overflow:hidden; margin-top:8px; }
+    th, td { text-align:left; padding:10px 14px; border-bottom:1px solid #232b40; font-size:13px; }
+    th { color:#8b93a7; font-weight:600; font-size:11px; text-transform:uppercase; }
+    .status-Met { color:#69db7c; }
+    .status-Partial { color:#ffd43b; }
+    .status-NotMet, .status-Not-Met { color:#ff8080; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="back" href="/">← All runs</a>
+    <h1>Run {{ report.run_id }}</h1>
+    <div class="sub">{{ report.target_summary }} — started {{ report.started_at }}</div>
+  </header>
+  <main>
+    <section>
+      <h2>Executive Summary</h2>
+      <div class="exec-summary">{{ report.executive_summary }}</div>
+    </section>
+
+    <section>
+      <h2>Agent Status</h2>
+      {% for agent, status in report.agent_status.items() %}
+        <span class="badge {{ 'critical' if status == 'failed' else ('low' if status=='ok' else 'medium') }}">{{ agent }}: {{ status }}</span>
+      {% endfor %}
+    </section>
+
+    <section>
+      <h2>Findings ({{ report.findings|length }})</h2>
+      {% for f in report.findings %}
+      <div class="card {{ f.severity }}">
+        <span class="badge {{ f.severity }}">{{ f.severity }}</span>
+        <strong>{{ f.title }}</strong>
+        <div class="meta">agent: {{ f.agent }} · category: {{ f.category }} · confidence: {{ "%.0f"|format(f.confidence*100) }}% · target: <code>{{ f.target }}</code></div>
+        <p>{{ f.description }}</p>
+        <p><strong>Fix:</strong> {{ f.recommended_fix }}</p>
+        {% if f.cve_ids %}<p><strong>CVE:</strong> {{ f.cve_ids|join(", ") }} · CVSS {{ f.cvss }} · EPSS {{ f.epss }} · KEV {{ f.kev }}</p>{% endif %}
+      </div>
+      {% else %}
+      <p>No findings.</p>
+      {% endfor %}
+    </section>
+
+    <section>
+      <h2>Incident Plans ({{ report.incident_plans|length }})</h2>
+      {% for p in report.incident_plans %}
+      <div class="card high">
+        <strong>Priority {{ p.priority }}</strong> — SLA {{ p.sla_target }} — finding <code>{{ p.finding_id }}</code>
+        <p>{{ p.impact_summary }}</p>
+        {% for s in p.steps %}
+          <div class="meta"><strong>[{{ s.phase.value if s.phase.value is defined else s.phase }}]</strong> {{ s.description }} — {{ s.command_or_change }}</div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No incident plans generated.</p>
+      {% endfor %}
+    </section>
+
+    {% if report.compliance %}
+    <section>
+      <h2>Compliance — {{ report.compliance.framework }} {{ report.compliance.framework_version }} ({{ report.compliance.coverage_percent }}% coverage)</h2>
+      <p class="meta">{{ report.compliance.control_subset_note }}</p>
+      <table>
+        <tr><th>Control</th><th>Name</th><th>Status</th><th>Rationale</th></tr>
+        {% for a in report.compliance.assessments %}
+        <tr>
+          <td><code>{{ a.control_id }}</code></td>
+          <td>{{ a.control_name }}</td>
+          <td class="status-{{ a.status|replace(' ', '') }}">{{ a.status }}</td>
+          <td>{{ a.rationale }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>

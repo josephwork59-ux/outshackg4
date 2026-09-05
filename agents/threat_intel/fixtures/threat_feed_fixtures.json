@@ -1,0 +1,50 @@
+{
+  "cves": {
+    "CVE-2019-1010083": {
+      "summary": "Flask before 1.0 is affected by unexpected memory usage (DoS) via crafted encoded JSON data.",
+      "cvss": 6.5,
+      "epss": 0.04,
+      "exploited_in_wild": false,
+      "fixed_version": "1.0",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2019-1010083",
+      "feed_timestamp": 1788220800
+    },
+    "CVE-2020-14343": {
+      "summary": "PyYAML before 5.4 is susceptible to arbitrary code execution via full_load()/FullLoader on untrusted input (incomplete fix for CVE-2020-1747).",
+      "cvss": 9.8,
+      "epss": 0.61,
+      "exploited_in_wild": true,
+      "fixed_version": "5.4",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+      "feed_timestamp": 1788220800
+    },
+    "CVE-2018-1000656": {
+      "summary": "Flask before 0.12.3 improper input validation leading to large memory usage / DoS via attacker-supplied JSON encoding.",
+      "cvss": 5.9,
+      "epss": 0.03,
+      "exploited_in_wild": false,
+      "fixed_version": "0.12.3",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2018-1000656",
+      "feed_timestamp": 1788220800
+    }
+  },
+  "kev": [
+    "CVE-2020-14343"
+  ],
+  "iocs": {
+    "203.0.113.77": {
+      "malicious": true,
+      "campaign": "Generic SSH brute-force botnet (demo fixture)",
+      "confidence": 0.82,
+      "source_url": "stub://threat-feed/campaigns/ssh-bruteforce-generic",
+      "feed_timestamp": 1788220800
+    },
+    "198.51.100.23": {
+      "malicious": true,
+      "campaign": "Known scanning infrastructure (demo fixture)",
+      "confidence": 0.6,
+      "source_url": "stub://threat-feed/campaigns/scanner-net",
+      "feed_timestamp": 1788220800
+    }
+  }
+}

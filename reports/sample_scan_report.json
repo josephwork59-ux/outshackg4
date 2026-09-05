@@ -1,0 +1,2920 @@
+{
+  "run_id": "32bf3c8361f2",
+  "started_at": "2026-09-05T16:21:55.485467Z",
+  "finished_at": "2026-09-05T16:22:06.554619Z",
+  "target_summary": "3 log source(s), repo:/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo",
+  "findings": [
+    {
+      "id": "75de63568fd9f986",
+      "agent": "log_monitor",
+      "title": "SSH brute-force / credential-stuffing from 203.0.113.77",
+      "description": "12 failed SSH logins from 203.0.113.77 against 5 distinct username(s) (admin, postgres, root, test, ubuntu) — consistent with a brute-force or credential-stuffing attack.\n\n[threat-intel] 203.0.113.77 matches known campaign 'Generic SSH brute-force botnet (demo fixture)' (confidence 0.82, source stub://threat-feed/campaigns/ssh-bruteforce-generic).",
+      "severity": "critical",
+      "confidence": 0.98,
+      "category": "ATT&CK:T1110",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "Jan 15 03:10:00 web01 sshd[100]: Failed password for root from 203.0.113.77 port 42100 ssh2",
+        "Jan 15 03:11:00 web01 sshd[101]: Failed password for admin from 203.0.113.77 port 42101 ssh2",
+        "Jan 15 03:12:00 web01 sshd[102]: Failed password for postgres from 203.0.113.77 port 42102 ssh2",
+        "Jan 15 03:13:00 web01 sshd[103]: Failed password for ubuntu from 203.0.113.77 port 42103 ssh2",
+        "Jan 15 03:14:00 web01 sshd[104]: Failed password for test from 203.0.113.77 port 42104 ssh2",
+        "Jan 15 03:15:00 web01 sshd[105]: Failed password for root from 203.0.113.77 port 42105 ssh2",
+        "Jan 15 03:16:00 web01 sshd[106]: Failed password for admin from 203.0.113.77 port 42106 ssh2",
+        "Jan 15 03:17:00 web01 sshd[107]: Failed password for postgres from 203.0.113.77 port 42107 ssh2",
+        "Jan 15 03:18:00 web01 sshd[108]: Failed password for ubuntu from 203.0.113.77 port 42108 ssh2",
+        "Jan 15 03:19:00 web01 sshd[109]: Failed password for test from 203.0.113.77 port 42109 ssh2"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1110/",
+        "stub://threat-feed/campaigns/ssh-bruteforce-generic"
+      ],
+      "recommended_fix": "Enforce account lockout / rate limiting on SSH; require key-based auth; consider fail2ban.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495715Z",
+      "correlated_ids": [
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "69927f75ec000b87",
+      "agent": "log_monitor",
+      "title": "XSS injection probe from 203.0.113.77",
+      "description": "1 request(s) from 203.0.113.77 contain XSS-style payloads in the URL/path.\n\n[threat-intel] 203.0.113.77 matches known campaign 'Generic SSH brute-force botnet (demo fixture)' (confidence 0.82, source stub://threat-feed/campaigns/ssh-bruteforce-generic).",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "ATT&CK:T1190",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "203.0.113.77 - - [15/Jan/2026:03:30:00 +0000] \"GET /search?q=<script>alert(1)</script> HTTP/1.1\" 200 480"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1190/",
+        "stub://threat-feed/campaigns/ssh-bruteforce-generic"
+      ],
+      "recommended_fix": "Validate/sanitize input server-side; use parameterized queries; deploy/update WAF rules.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495869Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "583e298ebcf17b46",
+      "agent": "vuln_scanner",
+      "title": "vulnerable dependency: flask (CVE-2019-1010083)",
+      "description": "The Pallets Project Flask before 1.0 is affected by: unexpected memory usage. The impact is: denial of service. The attack vector is: crafted encoded JSON data. The fixed version is: 1. NOTE: this may overlap CVE-2018-1000656.\n\n[threat-intel]\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: CVE: CVE-2019-1010083\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: validate the evidence cited, confirm scope/impact against\nthe affected asset's c",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "dependency-vuln",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12",
+      "evidence": [
+        "flask==0.12 matches PYSEC-2019-179"
+      ],
+      "references": [
+        "https://osv.dev/vulnerability/PYSEC-2019-179",
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-1010083"
+      ],
+      "recommended_fix": "Upgrade flask to 1.0",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547029Z",
+      "correlated_ids": [
+        "62a0b91d93f1e24f",
+        "0d93eaa25d025a04",
+        "c520728370cfd4b0",
+        "3399de7cc0b6f03a"
+      ],
+      "cve_ids": [
+        "CVE-2019-1010083"
+      ],
+      "cvss": 6.5,
+      "epss": 0.04,
+      "kev": false,
+      "exploited_in_wild": false,
+      "affected": "yes"
+    },
+    {
+      "id": "62a0b91d93f1e24f",
+      "agent": "vuln_scanner",
+      "title": "vulnerable dependency: flask (CVE-2018-1000656)",
+      "description": "The Pallets Project flask version Before 0.12.3 contains a CWE-20: Improper Input Validation vulnerability in flask that can result in Large amount of memory usage possibly leading to denial of service. This attack appear to be exploitable via Attacker provides JSON data in incorrect encoding. This vulnerability appears to have been fixed in 0.12.3. NOTE: this may overlap CVE-2019-1010083.\n\n[threat-intel]\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: CVE: CVE-2018-1000656\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: validate the evidence cited, confirm scope/impact against\nthe affected asset's c",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "dependency-vuln",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12",
+      "evidence": [
+        "flask==0.12 matches PYSEC-2018-66"
+      ],
+      "references": [
+        "https://osv.dev/vulnerability/PYSEC-2018-66",
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-1000656"
+      ],
+      "recommended_fix": "Upgrade flask to 0.12.3",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547124Z",
+      "correlated_ids": [
+        "583e298ebcf17b46",
+        "0d93eaa25d025a04",
+        "c520728370cfd4b0",
+        "3399de7cc0b6f03a"
+      ],
+      "cve_ids": [
+        "CVE-2018-1000656"
+      ],
+      "cvss": 5.9,
+      "epss": 0.03,
+      "kev": false,
+      "exploited_in_wild": false,
+      "affected": "yes"
+    },
+    {
+      "id": "0d93eaa25d025a04",
+      "agent": "vuln_scanner",
+      "title": "vulnerable dependency: flask (CVE-2023-30861)",
+      "description": "Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session and the proxy\n\n[threat-intel] No feed data found for CVE-2023-30861; affected status uncertain — verify manually.",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "dependency-vuln",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12",
+      "evidence": [
+        "flask==0.12 matches PYSEC-2023-62"
+      ],
+      "references": [
+        "https://osv.dev/vulnerability/PYSEC-2023-62"
+      ],
+      "recommended_fix": "Upgrade flask to 2.2.5",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547161Z",
+      "correlated_ids": [
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "c520728370cfd4b0",
+        "3399de7cc0b6f03a"
+      ],
+      "cve_ids": [
+        "CVE-2023-30861"
+      ],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": "uncertain"
+    },
+    {
+      "id": "c520728370cfd4b0",
+      "agent": "vuln_scanner",
+      "title": "vulnerable dependency: flask (CVE-2026-27205)",
+      "description": "Flask is a web server gateway interface (WSGI) web application framework. In versions 3.1.2 and below, when the session object is accessed, Flask should set the Vary: Cookie header., resulting in a Use of Cache Containing Sensitive Information vulnerability. The logic instructs caches not to cache the response, as it may contain information specific to a logged in user. This is handled in most cas\n\n[threat-intel] No feed data found for CVE-2026-27205; affected status uncertain — verify manually.",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "dependency-vuln",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12",
+      "evidence": [
+        "flask==0.12 matches PYSEC-2026-2151"
+      ],
+      "references": [
+        "https://osv.dev/vulnerability/PYSEC-2026-2151"
+      ],
+      "recommended_fix": "Upgrade flask to 3.1.3",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547197Z",
+      "correlated_ids": [
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "0d93eaa25d025a04",
+        "3399de7cc0b6f03a"
+      ],
+      "cve_ids": [
+        "CVE-2026-27205"
+      ],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": "uncertain"
+    },
+    {
+      "id": "3399de7cc0b6f03a",
+      "agent": "vuln_scanner",
+      "title": "vulnerable dependency: pyyaml (CVE-2020-14343)",
+      "description": "A vulnerability was discovered in the PyYAML library in versions before 5.4, where it is susceptible to arbitrary code execution when it processes untrusted YAML files through the full_load method or with the FullLoader loader. Applications that use the library to process untrusted input may be vulnerable to this flaw. This flaw allows an attacker to execute arbitrary code on the system by abusing\n\n[threat-intel] This CVE is on the CISA Known Exploited Vulnerabilities list — treat as active risk, not theoretical.\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: CVE: CVE-2020-14343\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: validate the evidence cited, confirm scope/impact against\nthe affected asset's cri",
+      "severity": "critical",
+      "confidence": 0.9,
+      "category": "dependency-vuln",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: pyyaml==5.3.1",
+      "evidence": [
+        "pyyaml==5.3.1 matches PYSEC-2021-142"
+      ],
+      "references": [
+        "https://osv.dev/vulnerability/PYSEC-2021-142",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-14343"
+      ],
+      "recommended_fix": "Upgrade pyyaml to 5.4",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547231Z",
+      "correlated_ids": [
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "0d93eaa25d025a04",
+        "c520728370cfd4b0"
+      ],
+      "cve_ids": [
+        "CVE-2020-14343"
+      ],
+      "cvss": 9.8,
+      "epss": 0.61,
+      "kev": true,
+      "exploited_in_wild": true,
+      "affected": "yes"
+    },
+    {
+      "id": "aa8c740edbf29fc1",
+      "agent": "vuln_scanner",
+      "title": "Dockerfile misconfig: DL3050-secret-in-dockerfile",
+      "description": "Possible hardcoded secret baked into the image layer.",
+      "severity": "critical",
+      "confidence": 0.85,
+      "category": "CIS-Docker-Benchmark",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:10",
+      "evidence": [
+        "Possible hardcoded secret baked into the image layer."
+      ],
+      "references": [],
+      "recommended_fix": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.548007Z",
+      "correlated_ids": [
+        "9c42dd35ecc9b3cf",
+        "6ab997f77f09e617"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "8f14b93d8c12f093",
+      "agent": "log_monitor",
+      "title": "Data-exfiltration volume anomaly (512000000 bytes)",
+      "description": "Response/transfer of 512000000 bytes is far above the observed baseline mean of 73146671 bytes — possible data exfiltration.\n\n[threat-intel] 203.0.113.77 matches known campaign 'Generic SSH brute-force botnet (demo fixture)' (confidence 0.82, source stub://threat-feed/campaigns/ssh-bruteforce-generic).",
+      "severity": "critical",
+      "confidence": 0.7000000000000001,
+      "category": "ATT&CK:T1041",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "{\"ts\": 1768450500.0, \"source_ip\": \"203.0.113.77\", \"user\": \"svc-app\", \"action\": \"export_report\", \"status\": \"200\", \"bytes_out\": 512000000}"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1041/",
+        "stub://threat-feed/campaigns/ssh-bruteforce-generic"
+      ],
+      "recommended_fix": "Investigate destination of the large transfer; apply DLP egress controls.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495905Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "e0ef43c6662b5adc",
+      "agent": "log_monitor",
+      "title": "Possible log tampering / disabled logging",
+      "description": "1 log line(s) indicate logging services were stopped or history cleared.",
+      "severity": "critical",
+      "confidence": 0.7,
+      "category": "ATT&CK:T1070",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "Jan 15 03:26:00 web01 auditd[500]: auditd stopped, keeping current audit configuration"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1070/"
+      ],
+      "recommended_fix": "Restore logging service; forward logs to an immutable/remote sink; investigate the host.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495891Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "2ab1000731a6ff1c",
+      "agent": "vuln_scanner",
+      "title": "bandit: B602 — subprocess call with shell=True identified, security issue.",
+      "description": "subprocess call with shell=True identified, security issue.",
+      "severity": "critical",
+      "confidence": 0.7,
+      "category": "CWE-78",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:32",
+      "evidence": [
+        "31     host = request.args.get(\"host\", \"localhost\")\n32     output = subprocess.check_output(f\"ping -c 1 {host}\", shell=True)\n33     return output\n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b602"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479291Z",
+      "correlated_ids": [
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f",
+        "df6013cbd1e7b5fa",
+        "e051b6b3cef3db94",
+        "facc4177906fe09d",
+        "0dfb48ded013bfcc"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "facc4177906fe09d",
+      "agent": "vuln_scanner",
+      "title": "bandit: B201 — A Flask app appears to be run with debug=True, which exposes",
+      "description": "A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.",
+      "severity": "critical",
+      "confidence": 0.7,
+      "category": "CWE-94",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54",
+      "evidence": [
+        "53     # --- binding to all interfaces with debug on ----------------------------\n54     app.run(host=\"0.0.0.0\", debug=True)\n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b201"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479330Z",
+      "correlated_ids": [
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f",
+        "df6013cbd1e7b5fa",
+        "2ab1000731a6ff1c",
+        "e051b6b3cef3db94",
+        "0dfb48ded013bfcc"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "e7a8ff09551fca42",
+      "agent": "log_monitor",
+      "title": "Possible privilege escalation activity",
+      "description": "1 log line(s) indicate elevation-related commands (sudo/usermod/setuid).",
+      "severity": "critical",
+      "confidence": 0.65,
+      "category": "ATT&CK:T1548",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "Jan 15 03:25:00 web01 sudo: deploy : TTY=pts/0 ; PWD=[REDACTED] ; USER=root ; COMMAND=/usr/sbin/usermod -aG root deploy"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1548/"
+      ],
+      "recommended_fix": "Audit sudoers and group membership; investigate the responsible account immediately.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495882Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "16b489794ce45223",
+      "agent": "log_monitor",
+      "title": "Periodic beacon-like traffic to 91.203.5.10",
+      "description": "6 connections to 91.203.5.10 at near-constant intervals (avg 30.0s, stddev 0.00s) — consistent with C2 beaconing.",
+      "severity": "critical",
+      "confidence": 0.6,
+      "category": "ATT&CK:T1071",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "beacon to 91.203.5.10 at t=1768451000.0",
+        "beacon to 91.203.5.10 at t=1768451030.0",
+        "beacon to 91.203.5.10 at t=1768451060.0",
+        "beacon to 91.203.5.10 at t=1768451090.0",
+        "beacon to 91.203.5.10 at t=1768451120.0",
+        "beacon to 91.203.5.10 at t=1768451150.0"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1071/"
+      ],
+      "recommended_fix": "Isolate the host; block the destination; capture memory/network forensics before remediation.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495927Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "43d7938d746910a9",
+      "agent": "log_monitor",
+      "title": "Reconnaissance / path scan from 198.51.100.23",
+      "description": "198.51.100.23 requested 10 distinct paths in a short window — consistent with automated reconnaissance.\n\n[threat-intel] 198.51.100.23 matches known campaign 'Known scanning infrastructure (demo fixture)' (confidence 0.60, source stub://threat-feed/campaigns/scanner-net).",
+      "severity": "high",
+      "confidence": 0.75,
+      "category": "ATT&CK:T1595",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /admin HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /wp-login.php HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /.env HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /config.php HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /phpmyadmin HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /.git/config HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /api/v1/debug HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /server-status HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /actuator/health HTTP/1.1\" 404 153",
+        "198.51.100.23 - - [15/Jan/2026:03:30:00 +0000] \"GET /xmlrpc.php HTTP/1.1\" 404 153"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1595/",
+        "stub://threat-feed/campaigns/scanner-net"
+      ],
+      "recommended_fix": "Review WAF/firewall rules; ensure only necessary paths are exposed; add rate limiting.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495851Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "df6013cbd1e7b5fa",
+      "agent": "vuln_scanner",
+      "title": "bandit: B608 — Possible SQL injection vector through string-based query con",
+      "description": "Possible SQL injection vector through string-based query construction.",
+      "severity": "high",
+      "confidence": 0.7,
+      "category": "CWE-89",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:23",
+      "evidence": [
+        "22     conn = sqlite3.connect(\"app.db\")\n23     query = \"SELECT * FROM users WHERE id = '\" + user_id + \"'\"\n24     cur = conn.execute(query)\n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b608"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479271Z",
+      "correlated_ids": [
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f",
+        "2ab1000731a6ff1c",
+        "e051b6b3cef3db94",
+        "facc4177906fe09d",
+        "0dfb48ded013bfcc"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "e051b6b3cef3db94",
+      "agent": "vuln_scanner",
+      "title": "bandit: B506 — Use of unsafe yaml load. Allows instantiation of arbitrary o",
+      "description": "Use of unsafe yaml load. Allows instantiation of arbitrary objects. Consider yaml.safe_load().",
+      "severity": "high",
+      "confidence": 0.7,
+      "category": "CWE-20",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:40",
+      "evidence": [
+        "39     data = request.data\n40     config = yaml.load(data, Loader=yaml.FullLoader)\n41     return str(config)\n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b506"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479309Z",
+      "correlated_ids": [
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f",
+        "df6013cbd1e7b5fa",
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "0dfb48ded013bfcc"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "0dfb48ded013bfcc",
+      "agent": "vuln_scanner",
+      "title": "bandit: B104 — Possible binding to all interfaces.",
+      "description": "Possible binding to all interfaces.",
+      "severity": "high",
+      "confidence": 0.7,
+      "category": "CWE-605",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54",
+      "evidence": [
+        "53     # --- binding to all interfaces with debug on ----------------------------\n54     app.run(host=\"0.0.0.0\", debug=True)\n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b104"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479346Z",
+      "correlated_ids": [
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f",
+        "df6013cbd1e7b5fa",
+        "2ab1000731a6ff1c",
+        "e051b6b3cef3db94",
+        "facc4177906fe09d"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "6afd444e012bdc89",
+      "agent": "vuln_scanner",
+      "title": "API spec issue: missing-auth",
+      "description": "Operation GET /user declares no security requirement (no auth) in the spec.",
+      "severity": "high",
+      "confidence": 0.6,
+      "category": "OWASP-API-Security-Top-10",
+      "target": "GET /user",
+      "evidence": [
+        "Operation GET /user declares no security requirement (no auth) in the spec."
+      ],
+      "references": [],
+      "recommended_fix": "Add explicit auth/security requirements and hardened error handling to the spec.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.548232Z",
+      "correlated_ids": [
+        "96bb9ee9bcd4144b"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "cd9ed0a75f993870",
+      "agent": "vuln_scanner",
+      "title": "API spec issue: missing-auth",
+      "description": "Operation POST /admin/delete-all declares no security requirement (no auth) in the spec.",
+      "severity": "high",
+      "confidence": 0.6,
+      "category": "OWASP-API-Security-Top-10",
+      "target": "POST /admin/delete-all",
+      "evidence": [
+        "Operation POST /admin/delete-all declares no security requirement (no auth) in the spec."
+      ],
+      "references": [],
+      "recommended_fix": "Add explicit auth/security requirements and hardened error handling to the spec.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.548242Z",
+      "correlated_ids": [],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "b980aa5bf3fbef79",
+      "agent": "log_monitor",
+      "title": "Successful login from previously unseen source 10.0.0.5",
+      "description": "User 'deploy' logged in successfully from 10.0.0.5, an IP not in the known/allowlisted set.",
+      "severity": "high",
+      "confidence": 0.4,
+      "category": "ATT&CK:T1078",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "Jan 15 08:00:00 web01 sshd[300]: Accepted password for deploy from 10.0.0.5 port 55000 ssh2"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1078/"
+      ],
+      "recommended_fix": "Confirm with the user this login is legitimate; consider requiring MFA / geo-fencing.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495936Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "da81d831624f052a"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "da81d831624f052a",
+      "agent": "log_monitor",
+      "title": "Successful login from previously unseen source 45.33.22.11",
+      "description": "User 'admin' logged in successfully from 45.33.22.11, an IP not in the known/allowlisted set.",
+      "severity": "high",
+      "confidence": 0.4,
+      "category": "ATT&CK:T1078",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log",
+      "evidence": [
+        "Jan 15 02:00:00 web01 sshd[301]: Accepted password for admin from 45.33.22.11 port 55010 ssh2"
+      ],
+      "references": [
+        "https://attack.mitre.org/techniques/T1078/"
+      ],
+      "recommended_fix": "Confirm with the user this login is legitimate; consider requiring MFA / geo-fencing.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:21:55.495944Z",
+      "correlated_ids": [
+        "75de63568fd9f986",
+        "43d7938d746910a9",
+        "69927f75ec000b87",
+        "e7a8ff09551fca42",
+        "e0ef43c6662b5adc",
+        "8f14b93d8c12f093",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "96bb9ee9bcd4144b",
+      "agent": "vuln_scanner",
+      "title": "API spec issue: verbose-error",
+      "description": "Error response 500 for GET /user appears to expose a stack trace.",
+      "severity": "medium",
+      "confidence": 0.6,
+      "category": "OWASP-API-Security-Top-10",
+      "target": "GET /user",
+      "evidence": [
+        "Error response 500 for GET /user appears to expose a stack trace."
+      ],
+      "references": [],
+      "recommended_fix": "Add explicit auth/security requirements and hardened error handling to the spec.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.548238Z",
+      "correlated_ids": [
+        "6afd444e012bdc89"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "9c42dd35ecc9b3cf",
+      "agent": "vuln_scanner",
+      "title": "Dockerfile misconfig: DL3007-latest-tag",
+      "description": "Base image pinned to :latest — non-reproducible, can silently pull in new vulnerabilities.",
+      "severity": "low",
+      "confidence": 0.85,
+      "category": "CIS-Docker-Benchmark",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:2",
+      "evidence": [
+        "Base image pinned to :latest — non-reproducible, can silently pull in new vulnerabilities."
+      ],
+      "references": [],
+      "recommended_fix": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547979Z",
+      "correlated_ids": [
+        "6ab997f77f09e617",
+        "aa8c740edbf29fc1"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "6ab997f77f09e617",
+      "agent": "vuln_scanner",
+      "title": "Dockerfile misconfig: DL3020-add-remote-url",
+      "description": "ADD used to fetch a remote URL; prefer COPY + explicit checksum verification or a pinned base image layer.",
+      "severity": "low",
+      "confidence": 0.85,
+      "category": "CIS-Docker-Benchmark",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:8",
+      "evidence": [
+        "ADD used to fetch a remote URL; prefer COPY + explicit checksum verification or a pinned base image layer."
+      ],
+      "references": [],
+      "recommended_fix": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:06.547997Z",
+      "correlated_ids": [
+        "9c42dd35ecc9b3cf",
+        "aa8c740edbf29fc1"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "8d2b8277572dccbe",
+      "agent": "vuln_scanner",
+      "title": "bandit: B404 — Consider possible security implications associated with the ",
+      "description": "Consider possible security implications associated with the subprocess module.",
+      "severity": "low",
+      "confidence": 0.7,
+      "category": "CWE-78",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:6",
+      "evidence": [
+        "5 import sqlite3\n6 import subprocess\n7 \n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b404"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479200Z",
+      "correlated_ids": [
+        "1bdd3bc1f2678f7f",
+        "df6013cbd1e7b5fa",
+        "2ab1000731a6ff1c",
+        "e051b6b3cef3db94",
+        "facc4177906fe09d",
+        "0dfb48ded013bfcc"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    },
+    {
+      "id": "1bdd3bc1f2678f7f",
+      "agent": "vuln_scanner",
+      "title": "bandit: B105 — Possible hardcoded password: 'hunter2-supersecret'",
+      "description": "Possible hardcoded password: 'hunter2-supersecret'",
+      "severity": "low",
+      "confidence": 0.7,
+      "category": "CWE-259",
+      "target": "/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:15",
+      "evidence": [
+        "14 AWS_ACCESS_KEY = \"[REDACTED_AWS_KEY]\"\n15 DB_PASSWORD = \"hunter2-supersecret\"\n16 \n"
+      ],
+      "references": [
+        "https://bandit.readthedocs.io/en/latest/plugins/index.html#b105"
+      ],
+      "recommended_fix": "Review bandit documentation for this test id and apply the secure pattern.",
+      "requires_human_approval": true,
+      "discovered_at": "2026-09-05T16:22:00.479250Z",
+      "correlated_ids": [
+        "8d2b8277572dccbe",
+        "df6013cbd1e7b5fa",
+        "2ab1000731a6ff1c",
+        "e051b6b3cef3db94",
+        "facc4177906fe09d",
+        "0dfb48ded013bfcc"
+      ],
+      "cve_ids": [],
+      "cvss": null,
+      "epss": null,
+      "kev": null,
+      "exploited_in_wild": null,
+      "affected": null
+    }
+  ],
+  "incident_plans": [
+    {
+      "id": "e4772dad292653df",
+      "finding_id": "75de63568fd9f986",
+      "finding_ids": [
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Block source IP(s) at the firewall/WAF (proposal only); force password reset for targeted accounts; enable MFA.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Enforce account lockout / rate limiting on SSH; require key-based auth; consider fail2ban.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 98%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: SSH brute-force / credential-stuffing from 203.0.113.77\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommende",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: SSH brute-force / credential-stuffing from 203.0.113.77.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.551687Z"
+    },
+    {
+      "id": "6dc47945b994a03a",
+      "finding_id": "69927f75ec000b87",
+      "finding_ids": [
+        "69927f75ec000b87",
+        "75de63568fd9f986",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Validate/sanitize input server-side; use parameterized queries; deploy/update WAF rules.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 90%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: XSS injection probe from 203.0.113.77\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: valid",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: XSS injection probe from 203.0.113.77.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.551771Z"
+    },
+    {
+      "id": "246ee38466369b10",
+      "finding_id": "583e298ebcf17b46",
+      "finding_ids": [
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "0d93eaa25d025a04",
+        "c520728370cfd4b0",
+        "3399de7cc0b6f03a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Upgrade flask to 1.0",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 90%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: vulnerable dependency: flask (CVE-2019-1010083)\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\ns",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12\nSummary: vulnerable dependency: flask (CVE-2019-1010083).\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.551840Z"
+    },
+    {
+      "id": "03e4de003f757228",
+      "finding_id": "62a0b91d93f1e24f",
+      "finding_ids": [
+        "62a0b91d93f1e24f",
+        "583e298ebcf17b46",
+        "0d93eaa25d025a04",
+        "c520728370cfd4b0",
+        "3399de7cc0b6f03a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Upgrade flask to 0.12.3",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 90%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: vulnerable dependency: flask (CVE-2018-1000656)\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\ns",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12\nSummary: vulnerable dependency: flask (CVE-2018-1000656).\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.551903Z"
+    },
+    {
+      "id": "04eabc91a2de2038",
+      "finding_id": "0d93eaa25d025a04",
+      "finding_ids": [
+        "0d93eaa25d025a04",
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "c520728370cfd4b0",
+        "3399de7cc0b6f03a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Upgrade flask to 2.2.5",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 90%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: vulnerable dependency: flask (CVE-2023-30861)\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nste",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12\nSummary: vulnerable dependency: flask (CVE-2023-30861).\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.551955Z"
+    },
+    {
+      "id": "c97336ecce55ca9e",
+      "finding_id": "c520728370cfd4b0",
+      "finding_ids": [
+        "c520728370cfd4b0",
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "0d93eaa25d025a04",
+        "3399de7cc0b6f03a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Upgrade flask to 3.1.3",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 90%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: vulnerable dependency: flask (CVE-2026-27205)\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nste",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: flask==0.12\nSummary: vulnerable dependency: flask (CVE-2026-27205).\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552008Z"
+    },
+    {
+      "id": "1c5a3e947c3a4604",
+      "finding_id": "3399de7cc0b6f03a",
+      "finding_ids": [
+        "3399de7cc0b6f03a",
+        "583e298ebcf17b46",
+        "62a0b91d93f1e24f",
+        "0d93eaa25d025a04",
+        "c520728370cfd4b0"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: pyyaml==5.3.1`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Upgrade pyyaml to 5.4",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: pyyaml==5.3.1`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: pyyaml==5.3.1). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 90%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: vulnerable dependency: pyyaml (CVE-2020-14343)\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nst",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/requirements.txt :: pyyaml==5.3.1\nSummary: vulnerable dependency: pyyaml (CVE-2020-14343).\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552083Z"
+    },
+    {
+      "id": "712a11ffcb69bf1a",
+      "finding_id": "aa8c740edbf29fc1",
+      "finding_ids": [
+        "aa8c740edbf29fc1",
+        "9c42dd35ecc9b3cf",
+        "6ab997f77f09e617"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence of exposure window; assume the credential is compromised immediately.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:10`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Revoke and rotate the exposed credential; purge from git history (BFG/git-filter-repo); audit access logs for misuse.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:10`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:10). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 85%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Dockerfile misconfig: DL3050-secret-in-dockerfile\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:10\nSummary: Dockerfile misconfig: DL3050-secret-in-dockerfile.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552145Z"
+    },
+    {
+      "id": "32f125c0a4893303",
+      "finding_id": "8f14b93d8c12f093",
+      "finding_ids": [
+        "8f14b93d8c12f093",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Investigate destination of the large transfer; apply DLP egress controls.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Data-exfiltration volume anomaly (512000000 bytes)\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended nex",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Data-exfiltration volume anomaly (512000000 bytes).\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552200Z"
+    },
+    {
+      "id": "eb9bc6aaada4fd73",
+      "finding_id": "e0ef43c6662b5adc",
+      "finding_ids": [
+        "e0ef43c6662b5adc",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Restore logging service; forward logs to an immutable/remote sink; investigate the host.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Possible log tampering / disabled logging\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: v",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Possible log tampering / disabled logging.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552252Z"
+    },
+    {
+      "id": "092cfffd3542c1a5",
+      "finding_id": "2ab1000731a6ff1c",
+      "finding_ids": [
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "df6013cbd1e7b5fa",
+        "e051b6b3cef3db94",
+        "0dfb48ded013bfcc",
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:32`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review bandit documentation for this test id and apply the secure pattern.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:32`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:32). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B602 — subprocess call with shell=True identified, security issue.\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:32\nSummary: bandit: B602 — subprocess call with shell=True identified, security issue..\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552311Z"
+    },
+    {
+      "id": "79edb9c8c69a2e81",
+      "finding_id": "facc4177906fe09d",
+      "finding_ids": [
+        "facc4177906fe09d",
+        "2ab1000731a6ff1c",
+        "df6013cbd1e7b5fa",
+        "e051b6b3cef3db94",
+        "0dfb48ded013bfcc",
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review bandit documentation for this test id and apply the secure pattern.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B201 — A Flask app appears to be run with debug=True, which exposes\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analys",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54\nSummary: bandit: B201 — A Flask app appears to be run with debug=True, which exposes.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552366Z"
+    },
+    {
+      "id": "4f2dc8348b25eb99",
+      "finding_id": "e7a8ff09551fca42",
+      "finding_ids": [
+        "e7a8ff09551fca42",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Audit sudoers and group membership; investigate the responsible account immediately.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 65%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Possible privilege escalation activity\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: vali",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Possible privilege escalation activity.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552417Z"
+    },
+    {
+      "id": "4464e80f1d89057d",
+      "finding_id": "16b489794ce45223",
+      "finding_ids": [
+        "16b489794ce45223",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P1",
+      "sla_target": "1 hour",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Isolate the host; block the destination; capture memory/network forensics before remediation.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead",
+        "Legal/Comms"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 60%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Periodic beacon-like traffic to 91.203.5.10\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep:",
+      "comms_draft": "INTERNAL NOTICE — CRITICAL finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Periodic beacon-like traffic to 91.203.5.10.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552471Z"
+    },
+    {
+      "id": "c4344a7decc95af4",
+      "finding_id": "43d7938d746910a9",
+      "finding_ids": [
+        "43d7938d746910a9",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "b980aa5bf3fbef79",
+        "da81d831624f052a"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review WAF/firewall rules; ensure only necessary paths are exposed; add rate limiting.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 75%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Reconnaissance / path scan from 198.51.100.23\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nste",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Reconnaissance / path scan from 198.51.100.23.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552525Z"
+    },
+    {
+      "id": "4430b8e2f35a20d1",
+      "finding_id": "df6013cbd1e7b5fa",
+      "finding_ids": [
+        "df6013cbd1e7b5fa",
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "e051b6b3cef3db94",
+        "0dfb48ded013bfcc",
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:23`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review bandit documentation for this test id and apply the secure pattern.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:23`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:23). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B608 — Possible SQL injection vector through string-based query con\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analys",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:23\nSummary: bandit: B608 — Possible SQL injection vector through string-based query con.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552580Z"
+    },
+    {
+      "id": "49dff5ac01f78817",
+      "finding_id": "e051b6b3cef3db94",
+      "finding_ids": [
+        "e051b6b3cef3db94",
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "df6013cbd1e7b5fa",
+        "0dfb48ded013bfcc",
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:40`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review bandit documentation for this test id and apply the secure pattern.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:40`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:40). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B506 — Use of unsafe yaml load. Allows instantiation of arbitrary o\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analys",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:40\nSummary: bandit: B506 — Use of unsafe yaml load. Allows instantiation of arbitrary o.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552634Z"
+    },
+    {
+      "id": "df81a77964cc6fda",
+      "finding_id": "0dfb48ded013bfcc",
+      "finding_ids": [
+        "0dfb48ded013bfcc",
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "df6013cbd1e7b5fa",
+        "e051b6b3cef3db94",
+        "8d2b8277572dccbe",
+        "1bdd3bc1f2678f7f"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review bandit documentation for this test id and apply the secure pattern.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B104 — Possible binding to all interfaces.\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended nex",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:54\nSummary: bandit: B104 — Possible binding to all interfaces..\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552684Z"
+    },
+    {
+      "id": "5358045707945118",
+      "finding_id": "6afd444e012bdc89",
+      "finding_ids": [
+        "6afd444e012bdc89",
+        "96bb9ee9bcd4144b"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `GET /user`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Add explicit auth/security requirements and hardened error handling to the spec.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `GET /user`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (GET /user). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 60%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: API spec issue: missing-auth\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: validate the e",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on GET /user\nSummary: API spec issue: missing-auth.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552737Z"
+    },
+    {
+      "id": "c0bb67a8c993e7a2",
+      "finding_id": "cd9ed0a75f993870",
+      "finding_ids": [
+        "cd9ed0a75f993870"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `POST /admin/delete-all`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Add explicit auth/security requirements and hardened error handling to the spec.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `POST /admin/delete-all`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (POST /admin/delete-all). Data at risk: application/infrastructure integrity. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 60%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: API spec issue: missing-auth\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: validate the e",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on POST /admin/delete-all\nSummary: API spec issue: missing-auth.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552785Z"
+    },
+    {
+      "id": "d238e1f13009e413",
+      "finding_id": "b980aa5bf3fbef79",
+      "finding_ids": [
+        "b980aa5bf3fbef79",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "da81d831624f052a"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Confirm with the user this login is legitimate; consider requiring MFA / geo-fencing.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 40%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Successful login from previously unseen source 10.0.0.5\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommende",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Successful login from previously unseen source 10.0.0.5.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552835Z"
+    },
+    {
+      "id": "e73ff03841af856c",
+      "finding_id": "da81d831624f052a",
+      "finding_ids": [
+        "da81d831624f052a",
+        "75de63568fd9f986",
+        "69927f75ec000b87",
+        "8f14b93d8c12f093",
+        "e0ef43c6662b5adc",
+        "e7a8ff09551fca42",
+        "16b489794ce45223",
+        "43d7938d746910a9",
+        "b980aa5bf3fbef79"
+      ],
+      "priority": "P2",
+      "sla_target": "4 hours",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Confirm with the user this login is legitimate; consider requiring MFA / geo-fencing.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: the named target (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log). Data at risk: credentials or session data. Possible regulatory notification obligation if customer data was exposed. Confidence in this finding: 40%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Successful login from previously unseen source 45.33.22.11\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recomme",
+      "comms_draft": "INTERNAL NOTICE — HIGH finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/auth.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/access.log,/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/logs/app.json.log\nSummary: Successful login from previously unseen source 45.33.22.11.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552891Z"
+    },
+    {
+      "id": "c7633779b26713dd",
+      "finding_id": "9c42dd35ecc9b3cf",
+      "finding_ids": [
+        "9c42dd35ecc9b3cf",
+        "aa8c740edbf29fc1",
+        "6ab997f77f09e617"
+      ],
+      "priority": "P4",
+      "sla_target": "1 week",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:2`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:2`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:2). Data at risk: application/infrastructure integrity. Low regulatory exposure at current severity. Confidence in this finding: 85%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Dockerfile misconfig: DL3007-latest-tag\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: val",
+      "comms_draft": "INTERNAL NOTICE — LOW finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:2\nSummary: Dockerfile misconfig: DL3007-latest-tag.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.552945Z"
+    },
+    {
+      "id": "09efcfa24f5af6ba",
+      "finding_id": "6ab997f77f09e617",
+      "finding_ids": [
+        "6ab997f77f09e617",
+        "aa8c740edbf29fc1",
+        "9c42dd35ecc9b3cf"
+      ],
+      "priority": "P4",
+      "sla_target": "1 week",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:8`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:8`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:8). Data at risk: application/infrastructure integrity. Low regulatory exposure at current severity. Confidence in this finding: 85%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: Dockerfile misconfig: DL3020-add-remote-url\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep:",
+      "comms_draft": "INTERNAL NOTICE — LOW finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/Dockerfile:8\nSummary: Dockerfile misconfig: DL3020-add-remote-url.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.553084Z"
+    },
+    {
+      "id": "10d3153f89df4b29",
+      "finding_id": "8d2b8277572dccbe",
+      "finding_ids": [
+        "8d2b8277572dccbe",
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "df6013cbd1e7b5fa",
+        "e051b6b3cef3db94",
+        "0dfb48ded013bfcc",
+        "1bdd3bc1f2678f7f"
+      ],
+      "priority": "P4",
+      "sla_target": "1 week",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence and isolate the affected asset/account.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:6`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Review bandit documentation for this test id and apply the secure pattern.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:6`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:6). Data at risk: application/infrastructure integrity. Low regulatory exposure at current severity. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B404 — Consider possible security implications associated with the \n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analys",
+      "comms_draft": "INTERNAL NOTICE — LOW finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:6\nSummary: bandit: B404 — Consider possible security implications associated with the .\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.553224Z"
+    },
+    {
+      "id": "85ce3efdd244609f",
+      "finding_id": "1bdd3bc1f2678f7f",
+      "finding_ids": [
+        "1bdd3bc1f2678f7f",
+        "2ab1000731a6ff1c",
+        "facc4177906fe09d",
+        "df6013cbd1e7b5fa",
+        "e051b6b3cef3db94",
+        "0dfb48ded013bfcc",
+        "8d2b8277572dccbe"
+      ],
+      "priority": "P4",
+      "sla_target": "1 week",
+      "steps": [
+        {
+          "phase": "contain",
+          "order": 1,
+          "description": "Preserve evidence of exposure window; assume the credential is compromised immediately.",
+          "owner_role": "SOC Analyst",
+          "command_or_change": "Snapshot logs/disk for target `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:15`; disable/rotate credentials if account-related.",
+          "rollback": "Re-enable account/asset once forensic snapshot is confirmed complete.",
+          "verification": "Confirm snapshot exists and asset is isolated (no new traffic in/out).",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "eradicate",
+          "order": 2,
+          "description": "Remove the root cause identified in the finding.",
+          "owner_role": "Security Engineer",
+          "command_or_change": "Revoke and rotate the exposed credential; purge from git history (BFG/git-filter-repo); audit access logs for misuse.",
+          "rollback": "Revert the change from a tested backup/staging config if it breaks the service.",
+          "verification": "Re-run the originating scanner/detector; confirm the finding no longer triggers.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "recover",
+          "order": 3,
+          "description": "Restore normal service and monitor for recurrence.",
+          "owner_role": "On-call Engineer",
+          "command_or_change": "Re-enable `/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:15`; add targeted monitoring/alert for this signature.",
+          "rollback": "Re-isolate if anomalous activity resumes.",
+          "verification": "24h of clean monitoring with no repeat detections for this signature.",
+          "requires_human_approval": true
+        },
+        {
+          "phase": "post_incident",
+          "order": 4,
+          "description": "Document root cause and update detections/controls.",
+          "owner_role": "Security Lead",
+          "command_or_change": "Write post-incident report; update detection rule or scanner policy if this was a gap.",
+          "rollback": "N/A (documentation step).",
+          "verification": "Post-incident report reviewed and filed; ticket closed.",
+          "requires_human_approval": true
+        }
+      ],
+      "required_approvals": [
+        "Security Lead"
+      ],
+      "evidence_preservation_checklist": [
+        "Raw log/evidence snapshot captured before eradication",
+        "Finding evidence lines preserved in the ScanReport (immutable)",
+        "Chain-of-custody note added if this becomes a formal investigation"
+      ],
+      "impact_summary": "Blast radius: a single asset/endpoint (/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:15). Data at risk: application/infrastructure integrity. Low regulatory exposure at current severity. Confidence in this finding: 70%.\n\n[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Finding: bandit: B105 — Possible hardcoded password: 'hunter2-supersecret'\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. ",
+      "comms_draft": "INTERNAL NOTICE — LOW finding on /Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo/app.py:15\nSummary: bandit: B105 — Possible hardcoded password: 'hunter2-supersecret'.\nStatus: under investigation, remediation proposed, awaiting approval.\nNo external disclosure drafted automatically — escalate to Legal/Comms if customer data exposure is confirmed.",
+      "playbook_reference": "NIST SP 800-61",
+      "created_at": "2026-09-05T16:22:06.553303Z"
+    }
+  ],
+  "compliance": {
+    "framework": "NIST CSF",
+    "framework_version": "2.0",
+    "control_subset_note": "Representative subset of 10 controls across the 6 CSF 2.0 functions (Govern, Identify, Protect, Detect, Respond, Recover) — not the full catalog.",
+    "coverage_percent": 30.0,
+    "assessments": [
+      {
+        "control_id": "GV.RM-01",
+        "control_name": "Risk management strategy is established",
+        "status": "Met",
+        "rationale": "A structured risk-identification pipeline (this system) executed and produced a findings inventory for review.",
+        "evidence_finding_ids": [],
+        "remediation": "",
+        "effort_estimate": ""
+      },
+      {
+        "control_id": "ID.AM-02",
+        "control_name": "Software platforms and applications are inventoried",
+        "status": "Not Met",
+        "rationale": "5 relevant finding(s) from ['vuln_scanner']: 5 at high/critical severity.",
+        "evidence_finding_ids": [
+          "583e298ebcf17b46",
+          "62a0b91d93f1e24f",
+          "0d93eaa25d025a04",
+          "c520728370cfd4b0",
+          "3399de7cc0b6f03a"
+        ],
+        "remediation": "Upgrade flask to 0.12.3; Upgrade flask to 1.0; Upgrade flask to 2.2.5; Upgrade flask to 3.1.3; Upgrade pyyaml to 5.4",
+        "effort_estimate": "high"
+      },
+      {
+        "control_id": "ID.RA-01",
+        "control_name": "Vulnerabilities are identified and documented",
+        "status": "Not Met",
+        "rationale": "18 relevant finding(s) from ['vuln_scanner']: 13 at high/critical severity.",
+        "evidence_finding_ids": [
+          "583e298ebcf17b46",
+          "62a0b91d93f1e24f",
+          "0d93eaa25d025a04",
+          "c520728370cfd4b0",
+          "3399de7cc0b6f03a",
+          "aa8c740edbf29fc1",
+          "2ab1000731a6ff1c",
+          "facc4177906fe09d",
+          "df6013cbd1e7b5fa",
+          "e051b6b3cef3db94",
+          "0dfb48ded013bfcc",
+          "6afd444e012bdc89",
+          "cd9ed0a75f993870",
+          "96bb9ee9bcd4144b",
+          "9c42dd35ecc9b3cf",
+          "6ab997f77f09e617",
+          "8d2b8277572dccbe",
+          "1bdd3bc1f2678f7f"
+        ],
+        "remediation": "Add explicit auth/security requirements and hardened error handling to the spec.; Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).; Review bandit documentation for this test id and apply the secure pattern.; Upgrade flask to 0.12.3; Upgrade flask to 1.0; Upgrade flask to 2.2.5; Upgrade flask to 3.1.3; Upgrade pyyaml to 5.4",
+        "effort_estimate": "high"
+      },
+      {
+        "control_id": "PR.AA-01",
+        "control_name": "Identities and credentials are managed",
+        "status": "Not Met",
+        "rationale": "2 relevant finding(s) from ['vuln_scanner']: 1 at high/critical severity.",
+        "evidence_finding_ids": [
+          "aa8c740edbf29fc1",
+          "1bdd3bc1f2678f7f"
+        ],
+        "remediation": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).; Review bandit documentation for this test id and apply the secure pattern.",
+        "effort_estimate": "medium"
+      },
+      {
+        "control_id": "PR.PS-02",
+        "control_name": "Software is maintained, replaced, and removed per risk",
+        "status": "Not Met",
+        "rationale": "5 relevant finding(s) from ['vuln_scanner']: 5 at high/critical severity.",
+        "evidence_finding_ids": [
+          "583e298ebcf17b46",
+          "62a0b91d93f1e24f",
+          "0d93eaa25d025a04",
+          "c520728370cfd4b0",
+          "3399de7cc0b6f03a"
+        ],
+        "remediation": "Upgrade flask to 0.12.3; Upgrade flask to 1.0; Upgrade flask to 2.2.5; Upgrade flask to 3.1.3; Upgrade pyyaml to 5.4",
+        "effort_estimate": "high"
+      },
+      {
+        "control_id": "PR.IR-01",
+        "control_name": "Networks and environments are protected",
+        "status": "Not Met",
+        "rationale": "3 relevant finding(s) from ['vuln_scanner']: 1 at high/critical severity.",
+        "evidence_finding_ids": [
+          "aa8c740edbf29fc1",
+          "9c42dd35ecc9b3cf",
+          "6ab997f77f09e617"
+        ],
+        "remediation": "Fix per the Dockerfile rule cited (non-root USER, pinned base image, no secrets in layers).",
+        "effort_estimate": "medium"
+      },
+      {
+        "control_id": "DE.CM-01",
+        "control_name": "Networks and network services are monitored",
+        "status": "Not Met",
+        "rationale": "9 relevant finding(s) from ['log_monitor']: 9 at high/critical severity.",
+        "evidence_finding_ids": [
+          "75de63568fd9f986",
+          "69927f75ec000b87",
+          "8f14b93d8c12f093",
+          "e0ef43c6662b5adc",
+          "e7a8ff09551fca42",
+          "16b489794ce45223",
+          "43d7938d746910a9",
+          "b980aa5bf3fbef79",
+          "da81d831624f052a"
+        ],
+        "remediation": "Audit sudoers and group membership; investigate the responsible account immediately.; Confirm with the user this login is legitimate; consider requiring MFA / geo-fencing.; Enforce account lockout / rate limiting on SSH; require key-based auth; consider fail2ban.; Investigate destination of the large transfer; apply DLP egress controls.; Isolate the host; block the destination; capture memory/network forensics before remediation.; Restore logging service; forward logs to an immutable/remote sink",
+        "effort_estimate": "high"
+      },
+      {
+        "control_id": "DE.AE-02",
+        "control_name": "Potentially adverse events are analyzed",
+        "status": "Not Met",
+        "rationale": "9 relevant finding(s) from ['log_monitor']: 9 at high/critical severity.",
+        "evidence_finding_ids": [
+          "75de63568fd9f986",
+          "69927f75ec000b87",
+          "8f14b93d8c12f093",
+          "e0ef43c6662b5adc",
+          "e7a8ff09551fca42",
+          "16b489794ce45223",
+          "43d7938d746910a9",
+          "b980aa5bf3fbef79",
+          "da81d831624f052a"
+        ],
+        "remediation": "Audit sudoers and group membership; investigate the responsible account immediately.; Confirm with the user this login is legitimate; consider requiring MFA / geo-fencing.; Enforce account lockout / rate limiting on SSH; require key-based auth; consider fail2ban.; Investigate destination of the large transfer; apply DLP egress controls.; Isolate the host; block the destination; capture memory/network forensics before remediation.; Restore logging service; forward logs to an immutable/remote sink",
+        "effort_estimate": "high"
+      },
+      {
+        "control_id": "RS.MA-01",
+        "control_name": "Incident response plan is executed",
+        "status": "Met",
+        "rationale": "26 incident plan(s) generated; phase completeness check passed.",
+        "evidence_finding_ids": [
+          "75de63568fd9f986",
+          "69927f75ec000b87",
+          "583e298ebcf17b46",
+          "62a0b91d93f1e24f",
+          "0d93eaa25d025a04",
+          "c520728370cfd4b0",
+          "3399de7cc0b6f03a",
+          "aa8c740edbf29fc1",
+          "8f14b93d8c12f093",
+          "e0ef43c6662b5adc",
+          "2ab1000731a6ff1c",
+          "facc4177906fe09d",
+          "e7a8ff09551fca42",
+          "16b489794ce45223",
+          "43d7938d746910a9",
+          "df6013cbd1e7b5fa",
+          "e051b6b3cef3db94",
+          "0dfb48ded013bfcc",
+          "6afd444e012bdc89",
+          "cd9ed0a75f993870",
+          "b980aa5bf3fbef79",
+          "da81d831624f052a",
+          "9c42dd35ecc9b3cf",
+          "6ab997f77f09e617",
+          "8d2b8277572dccbe",
+          "1bdd3bc1f2678f7f"
+        ],
+        "remediation": "",
+        "effort_estimate": "low"
+      },
+      {
+        "control_id": "RC.RP-01",
+        "control_name": "Recovery plan is executed",
+        "status": "Met",
+        "rationale": "26 incident plan(s) generated; phase completeness check passed.",
+        "evidence_finding_ids": [
+          "75de63568fd9f986",
+          "69927f75ec000b87",
+          "583e298ebcf17b46",
+          "62a0b91d93f1e24f",
+          "0d93eaa25d025a04",
+          "c520728370cfd4b0",
+          "3399de7cc0b6f03a",
+          "aa8c740edbf29fc1",
+          "8f14b93d8c12f093",
+          "e0ef43c6662b5adc",
+          "2ab1000731a6ff1c",
+          "facc4177906fe09d",
+          "e7a8ff09551fca42",
+          "16b489794ce45223",
+          "43d7938d746910a9",
+          "df6013cbd1e7b5fa",
+          "e051b6b3cef3db94",
+          "0dfb48ded013bfcc",
+          "6afd444e012bdc89",
+          "cd9ed0a75f993870",
+          "b980aa5bf3fbef79",
+          "da81d831624f052a",
+          "9c42dd35ecc9b3cf",
+          "6ab997f77f09e617",
+          "8d2b8277572dccbe",
+          "1bdd3bc1f2678f7f"
+        ],
+        "remediation": "",
+        "effort_estimate": "low"
+      }
+    ]
+  },
+  "agent_status": {
+    "orchestrator": "ok",
+    "log_monitor": "ok",
+    "vuln_scanner": "ok",
+    "threat_intel": "ok",
+    "incident_response": "ok",
+    "policy_checker": "ok"
+  },
+  "executive_summary": "[mock-llm output — set OPENAI_API_KEY to use a real model]\nContext: Run 32bf3c8361f2 against 3 log source(s), repo:/Users/mohitsharma/Code/Others/josephwork59-ux/outshackg4/demo/sample_repo.\n\nBased on the structured facts provided, this appears to be a\nlegitimate finding requiring analyst review. Recommended next\nstep: validate the evidence cited, "
+}

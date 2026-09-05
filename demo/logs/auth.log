@@ -1,0 +1,19 @@
+Jan 15 03:10:00 web01 sshd[100]: Failed password for root from 203.0.113.77 port 42100 ssh2
+Jan 15 03:11:00 web01 sshd[101]: Failed password for admin from 203.0.113.77 port 42101 ssh2
+Jan 15 03:12:00 web01 sshd[102]: Failed password for postgres from 203.0.113.77 port 42102 ssh2
+Jan 15 03:13:00 web01 sshd[103]: Failed password for ubuntu from 203.0.113.77 port 42103 ssh2
+Jan 15 03:14:00 web01 sshd[104]: Failed password for test from 203.0.113.77 port 42104 ssh2
+Jan 15 03:15:00 web01 sshd[105]: Failed password for root from 203.0.113.77 port 42105 ssh2
+Jan 15 03:16:00 web01 sshd[106]: Failed password for admin from 203.0.113.77 port 42106 ssh2
+Jan 15 03:17:00 web01 sshd[107]: Failed password for postgres from 203.0.113.77 port 42107 ssh2
+Jan 15 03:18:00 web01 sshd[108]: Failed password for ubuntu from 203.0.113.77 port 42108 ssh2
+Jan 15 03:19:00 web01 sshd[109]: Failed password for test from 203.0.113.77 port 42109 ssh2
+Jan 15 03:20:00 web01 sshd[1010]: Failed password for root from 203.0.113.77 port 421010 ssh2
+Jan 15 03:21:00 web01 sshd[1011]: Failed password for admin from 203.0.113.77 port 421011 ssh2
+Jan 15 04:00:00 web01 sshd[200]: Failed password for deploy from 198.51.100.23 port 50000 ssh2
+Jan 15 04:01:00 web01 sshd[201]: Failed password for deploy from 198.51.100.23 port 50001 ssh2
+Jan 15 04:02:00 web01 sshd[202]: Failed password for deploy from 198.51.100.23 port 50002 ssh2
+Jan 15 08:00:00 web01 sshd[300]: Accepted password for deploy from 10.0.0.5 port 55000 ssh2
+Jan 15 02:00:00 web01 sshd[301]: Accepted password for admin from 45.33.22.11 port 55010 ssh2
+Jan 15 03:25:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/sbin/usermod -aG root deploy
+Jan 15 03:26:00 web01 auditd[500]: auditd stopped, keeping current audit configuration
