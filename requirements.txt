@@ -1,0 +1,16 @@
+langgraph>=0.2,<0.3
+langchain-core>=0.3,<0.4
+pydantic>=2.7,<3
+fastapi==0.115.6
+starlette==0.41.3
+uvicorn[standard]==0.32.1
+jinja2==3.1.4
+openai>=1.40,<2
+pytest>=8.0,<9
+httpx>=0.27,<1
+
+# real local scanners the Vulnerability Scanner agent wraps
+semgrep>=1.70
+bandit>=1.7
+pip-audit>=2.7
+detect-secrets>=1.5

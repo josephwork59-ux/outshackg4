@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    image: cybersec-ai-agent-system:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+    volumes:
+      - ./reports:/app/reports
+      - ./demo:/app/demo:ro
+    restart: unless-stopped
+
+  # One-shot: runs the seeded demo scenario through the full pipeline and
+  # exits. `docker compose run --rm demo` is the containerized equivalent of
+  # `make demo`.
+  demo:
+    build: .
+    image: cybersec-ai-agent-system:latest
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    volumes:
+      - ./reports:/app/reports
+      - ./demo:/app/demo:ro
+    command: ["python", "demo/run_demo.py"]
+    profiles: ["demo"]

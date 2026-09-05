@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Cybersecurity AI Agent System</title>
+  <style>
+    body { font-family: -apple-system, Segoe UI, sans-serif; background:#0f1420; color:#e6e9ef; margin:0; }
+    header { background:#141a2b; padding:20px 32px; border-bottom:1px solid #232b40; }
+    h1 { margin:0; font-size:20px; }
+    .sub { color:#8b93a7; font-size:13px; margin-top:4px; }
+    main { max-width:960px; margin:32px auto; padding:0 20px; }
+    table { width:100%; border-collapse:collapse; background:#141a2b; border-radius:8px; overflow:hidden; }
+    th, td { text-align:left; padding:12px 16px; border-bottom:1px solid #232b40; font-size:14px; }
+    th { color:#8b93a7; font-weight:600; text-transform:uppercase; font-size:11px; letter-spacing:.05em; }
+    tr:hover td { background:#1a2233; }
+    a { color:#7fb0ff; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .empty { color:#8b93a7; padding:40px; text-align:center; }
+    .btn { display:inline-block; background:#3a6df0; color:white; padding:8px 16px; border-radius:6px; font-size:13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cybersecurity AI Agent System</h1>
+    <div class="sub">Multi-agent decision-support pipeline — read-only findings &amp; incident proposals, human-approved remediation.</div>
+  </header>
+  <main>
+    <p style="margin-bottom:16px;">
+      <span class="btn">POST /scan to start a new run</span>
+      &nbsp; or run <code>make demo</code> from the CLI.
+    </p>
+    {% if runs %}
+    <table>
+      <tr><th>Run ID</th><th>Started</th><th>Target</th><th></th></tr>
+      {% for run in runs %}
+      <tr>
+        <td><code>{{ run.run_id }}</code></td>
+        <td>{{ run.started_at }}</td>
+        <td>{{ run.target_summary }}</td>
+        <td><a href="/runs/{{ run.run_id }}">View report →</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <div class="empty">No scan runs yet. Run <code>make demo</code> to seed one.</div>
+    {% endif %}
+  </main>
+</body>
+</html>
