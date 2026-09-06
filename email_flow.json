@@ -1,0 +1,127 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "40f1ecfb-0a3d-4bbe-8e9a-57bd3275c82c",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7ba68a8a-3edd-44af-8fc5-9579a2f68926",
+      "name": "Webhook",
+      "webhookId": "40f1ecfb-0a3d-4bbe-8e9a-57bd3275c82c"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Cybersecurity Threat Analysis Agent.\n\nA security threat alert has been received from a webhook.\n\nAnalyze the incoming alert and prepare a concise security alert email.\n\nYour tasks:\n\n1. Determine whether the event represents a genuine security threat.\n2. Identify the threat type.\n3. Determine the severity: CRITICAL, HIGH, MEDIUM, LOW, or INFO.\n4. Extract the important information from the alert.\n5. Explain briefly why the event is considered a threat.\n6. Provide recommended immediate actions.\n\nFormat your response exactly as follows:\n\nCYBERSECURITY THREAT ALERT\n\nThreat Detected: <YES/NO>\nThreat Type: <type>\nSeverity: <CRITICAL/HIGH/MEDIUM/LOW/INFO>\nConfidence: <percentage>\n\nSource:\n<source information>\n\nTarget:\n<target information>\n\nKey Indicators:\n- <indicator 1>\n- <indicator 2>\n- <indicator 3>\n\nAnalysis:\n<short explanation>\n\nRecommended Action:\n<recommended action>\n\nDo not invent information that is not present in the alert.\n\nHere is the threat alert received from the webhook:\n\n{{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "a9c63950-796f-4884-bfa1-a961f228a199",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        160,
+        224
+      ],
+      "id": "0557c940-6df7-425d-8c62-61051cc9925b",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "VA2JqsjKTyOqwanc",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "samji6338@gmail.com",
+        "subject": "CYBERSECURITY THREAT ALERT",
+        "message": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        592,
+        0
+      ],
+      "id": "2f706894-7443-452e-99d2-ea8af3fd6b1f",
+      "name": "Send a message",
+      "webhookId": "e7a163d0-33f0-4121-876e-9b4ba41f0aaf",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Sv16pXC8vplcLDYG",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "56921506-73f0-4970-af2f-287d0a00a671",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cd0f662ab4d773b86790967a5a8a56722c903a06d7871def0f9e2c0e402082df"
+  },
+  "nodeGroups": [],
+  "id": "3yyVTDcGUMsymnLP",
+  "tags": []
+}

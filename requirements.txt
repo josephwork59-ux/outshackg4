@@ -8,6 +8,8 @@ jinja2==3.1.4
 openai>=1.40,<2
 pytest>=8.0,<9
 httpx>=0.27,<1
+# Kept below 1.60 because the existing FastAPI stack pins Starlette 0.41.3.
+streamlit==1.45.1
 
 # real local scanners the Vulnerability Scanner agent wraps
 semgrep>=1.70
