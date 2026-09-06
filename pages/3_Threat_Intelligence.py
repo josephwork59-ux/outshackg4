@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+from datetime import datetime
 
 import httpx
 import streamlit as st
@@ -42,13 +43,18 @@ if st.button("Approve & send alert", type="primary", use_container_width=True):
         ]
         payload = {
             "event": "threat_intelligence_alert_approved",
-            "recipient": recipient,
+            "timestamp": datetime.now().isoformat(),
+            "alert_recipient": {
+                "email": recipient,
+                "type": "primary_recipient"
+            },
             "summary": {
                 "total_findings": len(report.get("findings", [])),
                 "critical_findings": len(critical_findings),
                 "target": report.get("target_summary", "CyberGuard scan"),
             },
             "critical_findings": critical_findings,
+            "full_report": report,
         }
         try:
             response = httpx.post(webhook_url, json=payload, timeout=10.0)
