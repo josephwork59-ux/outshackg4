@@ -27,7 +27,7 @@ recipient = st.text_input(
 )
 
 if st.button("Approve & send alert", type="primary", use_container_width=True):
-    webhook_url = os.getenv("THREAT_INTEL_WEBHOOK_URL")
+    webhook_url = "https://samjiai290.app.n8n.cloud/webhook-test/40f1ecfb-0a3d-4bbe-8e9a-57bd3275c82c"
     if not webhook_url:
         st.warning(
             "Alert approved, but no alert was sent because `THREAT_INTEL_WEBHOOK_URL` "
